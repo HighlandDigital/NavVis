@@ -66,6 +66,7 @@
         
         function clickEventListener(data) {
             
+
         }
 
         function getParameterString(url, name) {
