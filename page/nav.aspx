@@ -37,14 +37,15 @@
             overflow: scroll;
         }
 
-        .ext-search-box .dropdown-menu
-        {
-            z-index: 1001;             /* Fix overlap with navbar elements */
+        .ext-search-box .dropdown-menu {
+            z-index: 1001; /* Fix overlap with navbar elements */
         }
 
+        #return-to-map-mobile {
+            display: none;
+        }
     </style>
     <script type="text/javascript">
-        var indoorviewer;
 
         $(".nav > li > a").click(function () {
             $('#collapse').addClass("collapsed");
@@ -55,18 +56,32 @@
 
         IV.loaded(function () {
             // Replace the base URL with the address of your IndoorViewer instance, and remember to get the API from the same instance
-            indoorviewer = new IndoorViewer({
+            var indoorviewer = new IndoorViewer({
                 base_url: '//nstlab.cn:14610/iv.example',
+                'menu.datasets.visible': false,
+                'menu.poi.visible': false,
+                'menu.pointcloud.visible': false,
+                'menu.mode.visible': false,
+                'menu.view.visible': false,
+                'menu.share.visible': false,
+                'menu.adout.visible': false,
+                'menu.languages.visible': false,
+                'menu.settings.visible': false,
+                'ui.floorchanger.visible': false,
+                'ui.poi_panel.visible': false,
+                'ui.search.visible':false,
                 onLoadComplete: function () {
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
+                    
                 }
             });
-            
-        });
-        
-        function clickEventListener(data) {
-            
 
+        });
+
+        function clickEventListener(data) {
+            $("#POI_title").html(data.title);
+            $("#POI_body").html(data.description);
+            showCoverPOI();
         }
 
         function getParameterString(url, name) {
@@ -82,23 +97,47 @@
             return null;
         }
 
+        function getRootPath() {
+            var strFullPath = window.document.location.href;
+            var strPath = window.document.location.pathname;
+            var pos = strFullPath.indexOf(strPath);
+            var prePath = strFullPath.substring(0, pos);
+            //var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
+            return (prePath + "/");
+        }
+
         function showCoverAbout() {
             $('body').css("overflow", "hidden")
             $(".cover").hide();
             $("#cover_about").show();
         }
 
-        function showCoverCom() {
+        function showCoverHot() {
             $('body').css("overflow", "hidden")
             $(".cover").hide();
-            $("#cover_com").show();
-            
+            $("#cover_hot").show();
+            searchProjectHot();
         }
 
         function showCoverSort() {
             $('body').css("overflow", "hidden")
             $(".cover").hide();
             $("#cover_sort").show();
+            searchIndustry();
+        }
+
+        function showCoverProj(sort) {
+            $('body').css("overflow", "hidden")
+            $(".cover").hide();
+            $("#industry_id").val(sort);
+            $("#cover_project").show();
+            searchProject();
+        }
+        
+        function showCoverPOI() {
+            $('body').css("overflow", "hidden")
+            $(".cover").hide();
+            $("#cover_poi").show();
 
         }
 
@@ -108,47 +147,82 @@
         }
 
         function loadPoint(param) {
-            var pstring = "//nstlab.cn:14910/iv.example/";
-            iv.src = pstring + "#?" + param;
-            event.preventDefault();
+            IV.moveToPOIID(param);
             $(".cover").hide();
+        }
+
+        function searchProjectHot() {
+            $.ajax({
+                type: 'POST',
+                url: "../handler/searchHandler.ashx",
+                data: {
+                    method: "searchProjectHot"
+                },
+                success: function (data) {
+                    var d = "";
+                    for (var i = 0; i < data.length; i++) {
+                        var content = "<div class=\"col-xs-12 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
+                            "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi + "')\">" +
+                            "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" />" +
+                            "</a></div>";
+                        d = d + content;
+                    }
+                    $("#projectHot_list").html(d);
+                },
+                dataType: "json"
+            });
+        }
+
+        function searchProject() {
+            $.ajax({
+                type: 'POST',
+                url: "../handler/searchHandler.ashx",
+                data: {
+                    method: "searchProject",
+                    industry_id: $("#industry_id").val(),
+                    param: $("#input_param").val()
+                },
+                success: function (data) {
+                    var d = "";
+                    for (var i = 0; i < data.length; i++) {
+                        var content = "<div class=\"col-xs-12 col-sm-12 placeholder\" style=\"margin-top: 10px;\">" +
+                            "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi + "')\">" +
+                            "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" />" +
+                            "</a></div>";
+                        d = d + content;
+                    }
+                    $("#project_list").html(d);
+                },
+                dataType: "json"
+            });
+        }
+
+        function searchIndustry() {
+            $.ajax({
+                type: 'POST',
+                url: "../handler/searchHandler.ashx",
+                data: {
+                    method: "searchIndustry"
+                },
+                success: function (data) {
+                    var d = "";
+                    for (var i = 0; i < data.length; i++) {
+                        var content = "<div class=\"col-xs-6 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
+                            "<a href=\"javascript:void(0);\" onclick=\"showCoverProj('" + data[i].id + "')\">" +
+                            "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].name + "\" />" +
+                            "</a></div>";
+                        d = d + content;
+                    }
+                    $("#industry_list").html(d);
+                },
+                dataType: "json"
+            });
         }
 
     </script>
 </head>
 <body>
-    
-    <div class="ext-search-box" ng-controller="POIController">
-            <!-- Typeahead template for search box -->
-            <script type="text/ng-template" id="template/typeahead/poi-external.html">
-                <a tabindex="-1">
-                    <img ng-src="{{match.model.icon}}" class="poiIcon">
-                    <div class="poi-info-wrapper">
-                        <div class="poi-info">
-                            <!--Name-->
-                            <div ng-bind-html="match.model.title | typeaheadHighlight:query"
-                                 class="poi-search-name"></div>
-                        </div>
-                    </div>
-                </a>
-            </script>
 
-            <div class="form">
-                <div class="input-group">
-                    <input type="text" class="form-control border-radius"
-                           ng-model="selected.poi"
-                           typeahead="poi as poi.title for poi in search($viewValue)"
-                           typeahead-template-url="template/typeahead/poi-external.html"
-                           typeahead-editable="false"
-                           placeholder=""
-                           typeahead-on-select="selectPOI($item)">
-                    <span class="input-group-addon">
-                        <span class="fa fa-search"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <div class="navbar-header">
@@ -162,104 +236,136 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="javascript:void(0);" onclick="showCoverCom()">明星企业</a></li>
+                    <li><a href="javascript:void(0);" onclick="showCoverHot()">明星展台</a></li>
                     <li><a href="javascript:void(0);" onclick="showCoverSort()">参展行业</a></li>
                     <li><a href="javascript:void(0);" onclick="showCoverAbout()">关于我们</a></li>
-                    
-                    <!--<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜单设置<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">按钮</li>
-                <li><a href="#" onclick="showLogin()">登录按钮</a></li>
-                <li><a href="#" onclick="showLanguage()">设置按钮</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">操作</li>
-                <li><a href="#" onclick="showSearchBar()">搜索栏</a></li>
-                <li><a href="/page/photo.aspx">拍照</a></li>
-              </ul>
-            </li>-->
-                    
-
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        
-
-                    </li>
+                    <li></li>
                 </ul>
-                <!--<form class="navbar-form navbar-right">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="请输入企业名称..."/>
-                <span class="input-group-addon">搜索</span>
-            </div>
-              
-          </form>-->
             </div>
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="container" style="width: 100%; height: 100%; margin-top: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; padding-bottom:85px;">
+    <div class="container" style="width: 100%; height: 100%; margin-top: 0px; margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 50px;">
 
         <div ng-include src="'iv.html'" style="width: 100%; height: 100%;"></div>
 
     </div>
     <div id="cover_about" class="cover">
-        <button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="margin:10px;" onclick="hideCover()">X</button>
+        <%--<div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 id="" class="panel-title">关于我们</h3>
+                    <button type="button" class="btn btn-default pull-right" title="关闭" style="border:none;background-color:transparent;" onclick="hideCover()">X</button>
+                </div>
+                <div id="" class="panel-body">
+                    
+                        <div class="col-xs-12 col-sm-12 placeholder">
+                            <p>
+                                南宁海蓝数据公司是一家致力于室内空间数字化的高科技企业，利用国际领先的三维空间扫描技术和室内导航技术打造全新室内3D实景地图，为大型场所提供室内三维数据采集及室内定位、导航服务，为室内三维数据采集及数据应用提供解决方案。
+                            </p>
+                        </div>
+
+                </div>
+            </div>
+        </div>--%>
+        <button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="border:none;background-color:transparent;margin: 10px;" onclick="hideCover()">X</button>
         <div class="container" style="margin-top: 70px;">
 
-            <div class="col-xs-12 col-sm-12 placeholder" style="color:#ffffff;">
-                <p>南宁海蓝数据公司是一家致力于室内空间数字化的高科技企业，利用国际领先的三维空间扫描技术和室内导航技术打造全新室内3D实景地图，为大型场所提供室内三维数据采集及室内定位、导航服务，为室内三维数据采集及数据应用提供解决方案。
-</p>
+            <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff;">
+                <p>
+                    南宁海蓝数据公司是一家致力于室内空间数字化的高科技企业，利用国际领先的三维空间扫描技术和室内导航技术打造全新室内3D实景地图，为大型场所提供室内三维数据采集及室内定位、导航服务，为室内三维数据采集及数据应用提供解决方案。
+                </p>
             </div>
-            
+
         </div>
     </div>
-    <div id="cover_com" class="cover">
-        <button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="margin:10px;" onclick="hideCover()">X</button>
-        <div class="container" style="margin-top: 70px;margin-bottom:70px;">
-
-            <div class="col-xs-12 col-sm-6 placeholder" style="margin-top:10px;">
-              <a href="javascript:void(0);" onclick=""><img src="http://nstlab.cn:14910/image/img_1.jpg" class="img-responsive" alt="Generic placeholder thumbnail"/>
-              
-              </a>
+    <div id="cover_hot" class="cover" runat="server">
+        <%--<div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 id="" class="panel-title">明星展台</h3>
+                    <button type="button" class="btn btn-default pull-right" title="关闭" style="border:none;background-color:transparent;" onclick="hideCover()">X</button>
+                </div>
+                <div id="projectHot_list" class="panel-body">
+                    明星展台
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 placeholder" style="margin-top:10px;">
-              <a href="javascript:void(0);" onclick=""><img src="http://nstlab.cn:14910/image/img_3.png" class="img-responsive" alt="Generic placeholder thumbnail"/>
-              
-              </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 placeholder" style="margin-top:10px;">
-              <a href="javascript:void(0);" onclick=""><img src="http://nstlab.cn:14910/image/img_5.png" class="img-responsive" alt="Generic placeholder thumbnail"/>
-              
-              </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 placeholder" style="margin-top:10px;">
-              <a href="javascript:void(0);" onclick=""><img src="http://nstlab.cn:14910/image/img_6.png" class="img-responsive" alt="Generic placeholder thumbnail"/>
-              
-              </a>
-            </div>
-            
+        </div>--%>
+        <button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="border:none;background-color:transparent;margin: 10px;" onclick="hideCover()">X</button>
+        <div id="projectHot_list" class="container" style="margin-top: 50px; margin-bottom: 50px;">
+           
         </div>
     </div>
     <div id="cover_sort" class="cover">
-        <button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="margin:10px;" onclick="hideCover()">X</button>
-        <div class="container" style="margin-top: 70px;margin-bottom:70px;">
+        <%--<div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 id="" class="panel-title">参展行业</h3>
+                    <button type="button" class="btn btn-default pull-right" title="关闭" style="border:none;background-color:transparent;" onclick="hideCover()">X</button>
+                </div>
+                <div id="industry_list" class="panel-body">
 
-            <div class="col-xs-12 col-sm-6 placeholder" style="margin-top:10px;">
-              <a href="javascript:void(0);" onclick=""><img src="http://nstlab.cn:14910/image/img_1.jpg" class="img-responsive" alt="大健康"/>
-              
-              </a>
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 placeholder" style="margin-top:10px;">
-              <a href="javascript:void(0);" onclick=""><img src="http://nstlab.cn:14910/image/img_3.png" class="img-responsive" alt="创新创业"/>
-              
-              </a>
-            </div>
-            
+        </div>--%>
+        <button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="border:none;background-color:transparent;margin: 10px;" onclick="hideCover()">X</button>
+        <div id="industry_list" class="container" style="margin-top: 50px; margin-bottom: 50px;">
             
         </div>
     </div>
+    <div id="cover_project" class="cover" runat="server">
+        <div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="input-group">
+                        <input id="industry_id" type="text" style="display:none;" value=""/>
+                        <input id="input_param" type="text" class="form-control border-radius" placeholder="搜索" oninput="searchProject()"/>
+                        <span class="input-group-addon">
+                            <span class="fa fa-search"></span>
+                        </span>
+                        <button type="button" class="btn btn-default pull-right" title="关闭" style="border:none;background-color:transparent;" onclick="hideCover()">X</button>
+                    </div>
+                    
+                </div>
+                <div id="project_list" class="panel-body">
+                    项目列表
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function moveToPoint(param) {
+                IV.moveToPOIID(param);
+            }
+        </script>
+        <%--<button type="button" class="btn btn-default pull-right tooltip-viewport-bottom" title="关闭" style="margin: 10px;" onclick="hideCover()">X</button>
+        <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+            <asp:Repeater ID="proj_Repeater" runat="server">
+                <ItemTemplate>
+                    <div class="col-xs-12 col-sm-6 placeholder" style="margin-top: 10px;">
+                        <a href="javascript:void(0);" onclick="loadPoint('<%# Eval("poi")%>')">
+                            <img src="<%# Eval("img_url")%>" class="img-responsive" alt="<%# Eval("name")%>" />
 
+                        </a>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
 
+        </div>--%>
+    </div>
+    <div id="cover_poi" class="cover" runat="server">
+        <div class="container" style="margin-top: 10px; margin-bottom: 30px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 id="POI_title" class="panel-title">兴趣点标题</h3>
+                    <button type="button" class="btn btn-default pull-right" title="关闭" style="border:none;background-color:transparent;" onclick="hideCover()">X</button>
+                </div>
+                <div id="POI_body" class="panel-body">
+                    兴趣点内容
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
