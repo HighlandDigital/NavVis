@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>第14届中国—东盟博览会先进技术展</title>
-    <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="../style/css/ishare.css">
+    <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css"/>
+	<link rel="stylesheet" type="text/css" href="../style/css/ishare.css"/>
     
     <link rel="stylesheet" type="text/css" href="../style/css/nav.css" />
 
@@ -51,7 +51,7 @@
 
         function clickEventListener(data) {
             if (!data.id) return;
-            searchPointByIVID(data.id);
+            searchPointByIVID(data.customData);
             
         }
 
@@ -197,16 +197,21 @@
             </div>
         </div>
     </div>
-    <div id="cover_poi" class="cover">
+    <div id="cover_poi" class="cover" style="display:none;">
         <div class="container" style="margin-bottom: 10px;padding:20px;">
             <div class="panel panel-default" style="width:100%;height:100%;">
                 <div class="panel-heading">
-                    <h3 id="POI_title" class="panel-title">兴趣点标题</h3>
-                    <a class="pull-right tooltip-viewport-bottom" style="margin:5px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
-        
+                    
+                    <div class="input-group">
+                        <input id="POI_title" type="text" class="form-control" placeholder="title" style="border:0px;background-color:transparent;">
+                        <span class="input-group-addon" style="border:0px;background-color:transparent;">
+                            <a class="pull-right tooltip-viewport-bottom" style="" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+                        </span>
+                    </div>
+
                 </div>
                 <div id="POI_body" class="panel-body" style="height:100%;">
-
+                    
                 </div>
                 <div class="panel-footer"></div>
 

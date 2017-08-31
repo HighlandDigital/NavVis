@@ -20,11 +20,11 @@ namespace DAO
             //
         }
         
-        public bool Add(int iv_id, string title, string title_img_url, string description, string description_url)
+        public bool Add(string iv_id, string title, string title_img_url, string description, string description_url)
         {
             SqlParameter[] parameters =
             {
-                new SqlParameter("@iv_id",SqlDbType.Int),
+                new SqlParameter("@iv_id",SqlDbType.NVarChar),
                new SqlParameter("@title",SqlDbType.NVarChar),
                new SqlParameter("@title_img_url",SqlDbType.NVarChar),
                new SqlParameter("@description",SqlDbType.NVarChar),
@@ -52,11 +52,11 @@ namespace DAO
             return IsSuccess;
         }
 
-        public bool Update(int id, int iv_id, string title, string title_img_url, string description, string description_url)
+        public bool Update(int id, string iv_id, string title, string title_img_url, string description, string description_url)
         {
             SqlParameter[] parameters =
             {
-               new SqlParameter("@iv_id",SqlDbType.Int),
+               new SqlParameter("@iv_id",SqlDbType.NVarChar),
                new SqlParameter("@title",SqlDbType.NVarChar),
                new SqlParameter("@title_img_url",SqlDbType.NVarChar),
                new SqlParameter("@description",SqlDbType.NVarChar),
@@ -118,13 +118,13 @@ namespace DAO
             return new SQL().Query(strSql.ToString(), parameters).Tables[0];
         }
 
-        public DataTable GetByIVID(int ivid)
+        public DataTable GetByIVID(string ivid)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select * from obj_point ");
             strSql.Append(" where iv_id=@iv_id");
             SqlParameter[] parameters = {
-                new SqlParameter("@iv_id", SqlDbType.Int)
+                new SqlParameter("@iv_id", SqlDbType.NVarChar)
           };
             parameters[0].Value = ivid;
             return new SQL().Query(strSql.ToString(), parameters).Tables[0];

@@ -122,8 +122,8 @@ function searchPointByIVID(id) {
         success: function (data) {
             if (!data || data.length == 0) return;
             var d = data[0];
-            $("#POI_title").html(d.title);
-            $("#POI_body").html(d.description_url);
+            $("#POI_title").val(d.title);
+            $("#POI_body").html(d.description);
             showCoverPOI();
         },
         dataType: "json"

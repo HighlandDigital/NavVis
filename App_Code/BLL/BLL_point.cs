@@ -21,9 +21,7 @@ namespace BLL
 
         public DataTable getPointByIVID(string id)
         {
-            int s = 0;
-            int.TryParse(id, out s);
-            DataTable dt = new DAO_point().GetByIVID(s);
+            DataTable dt = new DAO_point().GetByIVID(id);
             return dt;
         }
     } 
