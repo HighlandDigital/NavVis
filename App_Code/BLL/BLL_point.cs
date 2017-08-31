@@ -8,21 +8,22 @@ using DAO;
 namespace BLL
 {
     /// <summary>
-    /// BLL_industry 的摘要说明
+    /// BLL_point 的摘要说明
     /// </summary>
-    public class BLL_industry
+    public class BLL_point
     {
-        public BLL_industry()
+        public BLL_point()
         {
             //
             // TODO: 在此处添加构造函数逻辑
             //
         }
 
-        public DataTable getSort(int pagesize)
+        public DataTable getPointByIVID(string id)
         {
-            int count = 0;
-            DataTable dt = new DAO_industry().GetList(1, pagesize, "", "", "listorder asc", out count);
+            int s = 0;
+            int.TryParse(id, out s);
+            DataTable dt = new DAO_point().GetByIVID(s);
             return dt;
         }
     } 
