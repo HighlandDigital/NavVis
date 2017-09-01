@@ -8,21 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>第14届中国—东盟博览会先进技术展</title>
-    <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css"/>
-	<link rel="stylesheet" type="text/css" href="../style/css/ishare.css"/>
-    
+    <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../style/css/ishare.css" />
+
     <link rel="stylesheet" type="text/css" href="../style/css/nav.css" />
 
     <%--<link href="../bootstrap-3.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />--%>
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../JS/DataSearch.js"></script>
     <%--<script src="../bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>--%>
-   <script type="text/javascript" src="../JS/iShare.js"></script>
+    <script type="text/javascript" src="../JS/iShare.js"></script>
     <script src="qrcode.min.js"></script>
-    <script src="//nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script>
-    
+
+    <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script>
+
     <script type="text/javascript">
-        var indoorviewer;
+
         var xshare;
 
         IV.loaded(function () {
@@ -40,10 +41,10 @@
                 'menu.settings.visible': false,
                 'ui.floorchanger.visible': false,
                 'ui.poi_panel.visible': false,
-                'ui.search.visible':false,
+                'ui.search.visible': false,
                 onLoadComplete: function () {
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
-                    
+
                 }
             });
 
@@ -52,7 +53,7 @@
         function clickEventListener(data) {
             if (!data.id) return;
             searchPointByIVID(data.customData);
-            
+
         }
 
         function hideCover() {
@@ -64,18 +65,18 @@
                 //    $(this).css("display", "none");
                 //})
                 xshare.wx.hide();
-                
-                    
+
+
                 //}
             }, 100);
-            
+
         }
 
-        function moveToPoint(param) {
-            IV.moveToPOIID(param);
+        function moveToPoint(poi_id) {
+            IV.moveToPOIID(poi_id);
         }
-        function loadPoint(param) {
-            IV.moveToPOIID(param);
+        function loadPoint(poi_id) {
+            IV.moveToPOIID(poi_id);
             $(".cover").hide();
         }
 
@@ -108,11 +109,10 @@
                 }
             }));
         }
-        
+
     </script>
 
-   
-    
+
 
 </head>
 <body>
@@ -128,17 +128,16 @@
                 </button>
                 <a class="navbar-brand" href="#">虚拟导览</a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverProj(0)"><span class="fa fa-search"></span></a>
-                <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare();"><span class="fa fa-share"></span></a>          
+                <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare();"><span class="fa fa-share"></span></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="javascript:void(0);" onclick="showCoverHot()">明星展台</a></li>
                     <li><a href="javascript:void(0);" onclick="showCoverSort()">参展行业</a></li>
                     <li><a href="javascript:void(0);" onclick="showCoverAbout()">关于我们</a></li>
-                    
+
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -150,7 +149,7 @@
 
     </div>
     <div id="cover_about" class="cover">
-        <a class="pull-right tooltip-viewport-bottom" style="margin:10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
         <div class="container" style="margin-top: 70px;">
 
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff;">
@@ -162,56 +161,52 @@
         </div>
     </div>
     <div id="cover_hot" class="cover">
-        
-        <a class="pull-right tooltip-viewport-bottom" style="margin:10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+
+        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
         <div class="container hotlist">
-           
         </div>
     </div>
     <div id="cover_sort" class="cover">
-        
-        <a class="pull-right tooltip-viewport-bottom" style="margin:10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+
+        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
         <div class="container sortlist">
-            
         </div>
     </div>
     <div id="cover_project" class="cover">
-        <div class="container" style="margin-bottom: 10px;padding:20px;">
-            <div class="panel panel-default" style="width:100%;height:100%;">
+        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+            <div class="panel panel-default" style="width: 100%; height: 100%;">
                 <div class="panel-heading">
                     <div class="input-group">
-                        <input id="industry_id" type="text" style="display:none;" value=""/>
-                        <input id="input_param" type="text" class="form-control border-radius" placeholder="搜索" oninput="searchProject()"/>
+                        <input id="industry_id" type="text" style="display: none;" value="" />
+                        <input id="input_param" type="text" class="form-control border-radius" placeholder="搜索" oninput="searchProject()" />
                         <span class="input-group-addon">
                             <span class="fa fa-search"></span>
                         </span>
                         <a class="pull-right tooltip-viewport-bottom" style="margin: 5px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
                     </div>
-                    
+
                 </div>
                 <div class="panel-body projectlist">
-                    
                 </div>
                 <div class="panel-footer"></div>
 
             </div>
         </div>
     </div>
-    <div id="cover_poi" class="cover" style="display:none;">
-        <div class="container" style="margin-bottom: 10px;padding:20px;">
-            <div class="panel panel-default" style="width:100%;height:100%;">
+    <div id="cover_poi" class="cover" style="display: none;">
+        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+            <div class="panel panel-default" style="width: 100%; height: 100%;">
                 <div class="panel-heading">
-                    
+
                     <div class="input-group">
-                        <input id="POI_title" type="text" class="form-control" placeholder="title" style="border:0px;background-color:transparent;">
-                        <span class="input-group-addon" style="border:0px;background-color:transparent;">
+                        <input id="POI_title" type="text" class="form-control" placeholder="title" style="border: 0px; background-color: transparent;" readonly="readonly" />
+                        <span class="input-group-addon" style="border: 0px; background-color: transparent;">
                             <a class="pull-right tooltip-viewport-bottom" style="" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
                         </span>
                     </div>
 
                 </div>
-                <div id="POI_body" class="panel-body" style="height:100%;">
-                    
+                <div id="POI_body" class="panel-body" style="height: 100%;">
                 </div>
                 <div class="panel-footer"></div>
 
@@ -220,16 +215,31 @@
     </div>
 
     <div id="cover_share" class="cover">
-        <a class="pull-right tooltip-viewport-bottom" style="margin:10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
         <div class="container" style="margin-top: 70px;">
-            <div class="iShare " >
-	           
-            </div>   
+            <div class="iShare ">
+                <a href="#" class="iShare_qzone"><i class="iconfont qzone">&#xe610;</i></a>
+                <a href="#" class="iShare_tencent"><i class="iconfont tencent" style="vertical-align: -2px;">&#xe608;</i></a>
+
+
+                <a href="#" class="iShare_weibo"><i class="iconfont weibo">&#xe609;</i></a>
+                <a href="#" class="iShare_douban"><i class="iconfont douban" style="vertical-align: -2px;">&#xe612;</i></a>
+
+
+                <a href="#" class="iShare_renren"><i class="iconfont renren">&#xe603;</i></a>
+                <a href="#" class="iShare_youdaonote"><i class="iconfont youdaonote" style="vertical-align: -2px;">&#xe604;</i></a>
+                <a href="#" class="iShare_facebook"><i class="iconfont facebook" style="vertical-align: 1px;">&#xe601;</i></a>
+                <a href="#" class="iShare_twitter"><i class="iconfont twitter" style="vertical-align: 1px;">&#xe60a;</i></a>
+                <a href="#" class="iShare_googleplus"><i class="iconfont googleplus" style="vertical-align: -1px;">&#xe60b;</i></a>
+                <a href="#" class="iShare_linkedin"><i class="iconfont linkedin" style="vertical-align: 2px;">&#xe607;</i></a>
+                <a href="#" class="iShare_pinterest"><i class="iconfont pinterest" style="vertical-align: 0px;">&#xe60c;</i></a>
+                <a href="#" class="iShare_wechat"><i class="iconfont wechat" style="vertical-align: -2px;">&#xe613;</i></a>
+                <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>
+
+            </div>
         </div>
     </div>
 
-
-     
 
 </body>
 </html>

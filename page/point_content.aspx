@@ -10,22 +10,13 @@
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
     <style>
-        .header {
-    background: #222;
-    background-repeat: no-repeat;
-    background-position: center 0;
-    background-size: contain;
-    padding: 138px 0 0;
-    text-align: center;
-    min-height: 400px;
-    position: relative;
-}
+
     </style>
 </head>
 <body>
-    
-    <div class="header" style="background-image: url(http://navvis.ccgx.cn/image/img_1.jpg)">
-    
+    <img src="../image/temp/ny.png" style="width:100%;" alt="兴趣点顶部图片"/>
+    <div>
+        兴趣点文字内容
     </div>
     
 </body>

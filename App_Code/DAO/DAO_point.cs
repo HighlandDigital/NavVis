@@ -20,22 +20,30 @@ namespace DAO
             //
         }
         
-        public bool Add(string iv_id, string title, string title_img_url, string description, string description_url)
+        public bool Add(string iv_id, string title, string title_en, string title_img_url, string description, string description_mod, string description_en, string description_en_mod, bool locked)
         {
             SqlParameter[] parameters =
             {
                 new SqlParameter("@iv_id",SqlDbType.NVarChar),
                new SqlParameter("@title",SqlDbType.NVarChar),
+               new SqlParameter("@title_en",SqlDbType.NVarChar),
                new SqlParameter("@title_img_url",SqlDbType.NVarChar),
                new SqlParameter("@description",SqlDbType.NVarChar),
-               new SqlParameter("@description_url",SqlDbType.NVarChar)
+               new SqlParameter("@description_mod",SqlDbType.NVarChar),
+               new SqlParameter("@description_en",SqlDbType.NVarChar),
+               new SqlParameter("@description_en_mod",SqlDbType.NVarChar),
+               new SqlParameter("@locked",SqlDbType.Bit)
              };
             parameters[0].Value = iv_id;
             parameters[1].Value = title;
-            parameters[2].Value = title_img_url;
-            parameters[3].Value = description;
-            parameters[4].Value = description_url;
-            string strSql = "insert into obj_point(iv_id, title, title_img_url, description, description_url) values(@iv_id, @title, @title_img_url, @description, @description_url)";
+            parameters[2].Value = title_en;
+            parameters[3].Value = title_img_url;
+            parameters[4].Value = description;
+            parameters[5].Value = description_mod;
+            parameters[6].Value = description_en;
+            parameters[7].Value = description_en_mod;
+            parameters[8].Value = locked;
+            string strSql = "insert into obj_point( iv_id,  title,  title_en,  title_img_url,  description,  description_mod,  description_en,  description_en_mod,  locked) values(@iv_id, @title, @title_en, @title_img_url, @description, @description_mod, @description_en, @description_en_mod, @locked)";
             bool IsSuccess = false;
             try
             {
@@ -52,24 +60,32 @@ namespace DAO
             return IsSuccess;
         }
 
-        public bool Update(int id, string iv_id, string title, string title_img_url, string description, string description_url)
+        public bool Update(int id, string iv_id, string title, string title_en, string title_img_url, string description, string description_mod, string description_en, string description_en_mod, bool locked)
         {
             SqlParameter[] parameters =
             {
                new SqlParameter("@iv_id",SqlDbType.NVarChar),
                new SqlParameter("@title",SqlDbType.NVarChar),
+               new SqlParameter("@title_en",SqlDbType.NVarChar),
                new SqlParameter("@title_img_url",SqlDbType.NVarChar),
                new SqlParameter("@description",SqlDbType.NVarChar),
-               new SqlParameter("@description_url",SqlDbType.NVarChar),
+               new SqlParameter("@description_mod",SqlDbType.NVarChar),
+               new SqlParameter("@description_en",SqlDbType.NVarChar),
+               new SqlParameter("@description_en_mod",SqlDbType.NVarChar),
+               new SqlParameter("@locked",SqlDbType.Bit),
                new SqlParameter("@id",SqlDbType.Int)
             };
             parameters[0].Value = iv_id;
             parameters[1].Value = title;
-            parameters[2].Value = title_img_url;
-            parameters[3].Value = description;
-            parameters[4].Value = description_url;
-            parameters[5].Value = id;
-            string strSql = "update obj_point set iv_id=@iv_id,title=@title,title_img_url=@title_img_url,description=@description,description_url=@description_url where id=@id";
+            parameters[2].Value = title_en;
+            parameters[3].Value = title_img_url;
+            parameters[4].Value = description;
+            parameters[5].Value = description_mod;
+            parameters[6].Value = description_en;
+            parameters[7].Value = description_en_mod;
+            parameters[8].Value = locked;
+            parameters[9].Value = id;
+            string strSql = "update obj_point set iv_id=@iv_id,title=@title,title_en=@title_en,title_img_url=@title_img_url,description=@description,description_mod=@description_mod,description_en=@description_en,description_en_mod=@description_en_mod,locked=@locked where id=@id";
             bool IsSuccess = false;
             try
             {
