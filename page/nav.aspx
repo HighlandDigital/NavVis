@@ -215,29 +215,39 @@
     </div>
 
     <div id="cover_share" class="cover">
-        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
-        <div class="container" style="margin-top: 70px;">
-            <div class="iShare ">
-                <a href="#" class="iShare_qzone"><i class="iconfont qzone">&#xe610;</i></a>
-                <a href="#" class="iShare_tencent"><i class="iconfont tencent" style="vertical-align: -2px;">&#xe608;</i></a>
+        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+            <div class="panel panel-default" style="width: 100%; height: 100%;">
+                <div class="panel-heading">
+                    分享
+                    <a class="pull-right tooltip-viewport-bottom" style="margin: 2px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+                </div>
+                <div class="panel-body">
+                    <div class="iShare ">
+                        <a href="#" class="iShare_qzone"><i class="iconfont qzone">&#xe610;</i></a>
+                        <a href="#" class="iShare_tencent"><i class="iconfont tencent" style="vertical-align: -2px;">&#xe608;</i></a>
 
 
-                <a href="#" class="iShare_weibo"><i class="iconfont weibo">&#xe609;</i></a>
-                <a href="#" class="iShare_douban"><i class="iconfont douban" style="vertical-align: -2px;">&#xe612;</i></a>
+                        <a href="#" class="iShare_weibo"><i class="iconfont weibo">&#xe609;</i></a>
+                        <a href="#" class="iShare_douban"><i class="iconfont douban" style="vertical-align: -2px;">&#xe612;</i></a>
 
 
-                <a href="#" class="iShare_renren"><i class="iconfont renren">&#xe603;</i></a>
-                <a href="#" class="iShare_youdaonote"><i class="iconfont youdaonote" style="vertical-align: -2px;">&#xe604;</i></a>
-                <a href="#" class="iShare_facebook"><i class="iconfont facebook" style="vertical-align: 1px;">&#xe601;</i></a>
-                <a href="#" class="iShare_twitter"><i class="iconfont twitter" style="vertical-align: 1px;">&#xe60a;</i></a>
-                <a href="#" class="iShare_googleplus"><i class="iconfont googleplus" style="vertical-align: -1px;">&#xe60b;</i></a>
-                <a href="#" class="iShare_linkedin"><i class="iconfont linkedin" style="vertical-align: 2px;">&#xe607;</i></a>
-                <a href="#" class="iShare_pinterest"><i class="iconfont pinterest" style="vertical-align: 0px;">&#xe60c;</i></a>
-                <a href="#" class="iShare_wechat"><i class="iconfont wechat" style="vertical-align: -2px;">&#xe613;</i></a>
-                <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>
+                        <a href="#" class="iShare_renren"><i class="iconfont renren">&#xe603;</i></a>
+                        <a href="#" class="iShare_youdaonote"><i class="iconfont youdaonote" style="vertical-align: -2px;">&#xe604;</i></a>
+                        <a href="#" class="iShare_facebook"><i class="iconfont facebook" style="vertical-align: 1px;">&#xe601;</i></a>
+                        <a href="#" class="iShare_twitter"><i class="iconfont twitter" style="vertical-align: 1px;">&#xe60a;</i></a>
+                        <a href="#" class="iShare_googleplus"><i class="iconfont googleplus" style="vertical-align: -1px;">&#xe60b;</i></a>
+                        <a href="#" class="iShare_linkedin"><i class="iconfont linkedin" style="vertical-align: 2px;">&#xe607;</i></a>
+                        <a href="#" class="iShare_pinterest"><i class="iconfont pinterest" style="vertical-align: 0px;">&#xe60c;</i></a>
+                        <a href="#" class="iShare_wechat"><i class="iconfont wechat" style="vertical-align: -2px;">&#xe613;</i></a>
+                        <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>
+
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
 
             </div>
         </div>
+
     </div>
 
 
