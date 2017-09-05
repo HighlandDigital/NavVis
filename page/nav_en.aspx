@@ -123,7 +123,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">NavVis</a>
+                <a class="navbar-brand" href="#">Navigation</a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverProj(0)"><span class="fa fa-search"></span></a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare();"><span class="fa fa-share"></span></a>
             </div>
