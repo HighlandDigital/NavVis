@@ -3,7 +3,11 @@ function showCoverHot() {
     $('body').css("overflow", "hidden")
     $(".cover").hide();
     $("#cover_hot").show();
-    $("#navbtn").click();
+    var display = $('#navbtn').css('display');
+    if (display == 'block') {
+        $("#navbtn").click();
+    }
+
     searchProjectHot();
 }
 
@@ -11,7 +15,11 @@ function showCoverSort() {
     $('body').css("overflow", "hidden")
     $(".cover").hide();
     $("#cover_sort").show();
-    $("#navbtn").click();
+    var display = $('#navbtn').css('display');
+    if (display == 'block') {
+        $("#navbtn").click();
+    }
+
     searchIndustry();
 }
 
@@ -27,7 +35,11 @@ function showCoverAbout() {
     $('body').css("overflow", "hidden")
     $(".cover").hide();
     $("#cover_about").show();
-    $("#navbtn").click();
+    var display = $('#navbtn').css('display');
+    if (display == 'block') {
+        $("#navbtn").click();
+    }
+
 }
 
 function showCoverPOI() {
@@ -43,16 +55,24 @@ function searchProjectHot() {
         url: "../handler/searchHandler.ashx",
         data: {
             method: "searchProjectHot",
-            pagesize: "10"
+            pagesize: "10",
+            lang: language
         },
         success: function (data) {
             if (!data || data.length == 0) return;
             var d = "";
             for (var i = 0; i < data.length; i++) {
+                var title = "";
+                if (language == "CH") title = data[i].name;
+                else if (language == "EN") title = data[i].name_en;
                 var content = "<div class=\"col-xs-12 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
                     "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
+                    "<div class=\"panel panel-default\">" +
+                    "<div class=\"panel-body\" style=\"padding:0px;\">" +
                     "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" />" +
-                    "</a></div>";
+                    "</div>" +
+                    "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
+                    "</div></a></div>";
                 d = d + content;
             }
             $(".hotlist").html(d);
@@ -69,16 +89,24 @@ function searchProject() {
             method: "searchProject",
             pagesize: "10",
             industry_id: $("#industry_id").val(),
-            param: $("#input_param").val()
+            param: $("#input_param").val(),
+            lang: language
         },
         success: function (data) {
             if (!data || data.length == 0) return;
             var d = "";
             for (var i = 0; i < data.length; i++) {
+                var title = "";
+                if (language == "CH") title = data[i].name;
+                else if (language == "EN") title = data[i].name_en;
                 var content = "<div class=\"col-xs-12 col-sm-12 placeholder\" style=\"margin-top: 10px;\">" +
                     "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
+                    "<div class=\"panel panel-default\">" +
+                    "<div class=\"panel-body\" style=\"padding:0px;\">" +
                     "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" />" +
-                    "</a></div>";
+                    "</div>" +
+                    "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
+                    "</div></a></div>";
                 d = d + content;
             }
             $(".projectlist").html(d);
@@ -93,16 +121,24 @@ function searchIndustry() {
         url: "../handler/searchHandler.ashx",
         data: {
             method: "searchIndustry",
-            pagesize: "10"
+            pagesize: "10",
+            lang: language
         },
         success: function (data) {
             if (!data || data.length == 0) return;
             var d = "";
             for (var i = 0; i < data.length; i++) {
+                var title = "";
+                if (language == "CH") title = data[i].name;
+                else if (language == "EN") title = data[i].name_en;
                 var content = "<div class=\"col-xs-6 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
                     "<a href=\"javascript:void(0);\" onclick=\"showCoverProj('" + data[i].id + "')\">" +
+                    "<div class=\"panel panel-default\">"+
+                    "<div class=\"panel-body\" style=\"padding:0px;\">"+
                     "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].name + "\" />" +
-                    "</a></div>";
+                    "</div>"+
+                    "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
+                    "</div></a></div>";
                 d = d + content;
             }
             $(".sortlist").html(d);
@@ -122,8 +158,15 @@ function searchPointByIVID(id) {
         success: function (data) {
             if (!data || data.length == 0) return;
             var d = data[0];
-            $("#POI_title").val(d.title);
-            $("#POI_body").html(d.description_mod);
+            if (language == "CH") {
+                $("#POI_title").val(d.title);
+                $("#POI_body").html(d.description_mod);
+            }
+            else if (language == "EN") {
+                $("#POI_title").val(d.title_en);
+                $("#POI_body").html(d.description_en_mod);
+            }
+            
             showCoverPOI();
         },
         dataType: "json"

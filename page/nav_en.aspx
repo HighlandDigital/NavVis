@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="nav.aspx.cs" Inherits="nav" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="nav_en.aspx.cs" Inherits="nav_en" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>第14届中国—东盟博览会先进技术展</title>
+    <title>The 14th CAEXPO advanced technology exhibition</title>
     <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="../style/css/ishare.css" />
 
@@ -21,7 +21,7 @@
     <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script>
     
     <script type="text/javascript">
-        var language = "CH";
+        var language = "EN";
         var xshare;
 
         IV.loaded(function () {
@@ -103,8 +103,8 @@
             }));
         }
 
-        function toEn() {
-            window.location = "nav_en.aspx";
+        function toCh() {
+            window.location = "nav.aspx";
         }
     </script>
 
@@ -122,7 +122,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">虚拟导览</a>
+                <a class="navbar-brand" href="#">NavVis</a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverProj(0)"><span class="fa fa-search"></span></a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare();"><span class="fa fa-share"></span></a>
             </div>
@@ -130,10 +130,10 @@
                 <ul class="nav navbar-nav">
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0);" onclick="showCoverHot()">明星展台</a></li>
-                    <li><a href="javascript:void(0);" onclick="showCoverSort()">参展行业</a></li>
-                    <li><a href="javascript:void(0);" onclick="showCoverAbout()">关于我们</a></li>
-                    <li><a href="javascript:void(0);" onclick="toEn()">English</a></li>
+                    <li><a href="javascript:void(0);" onclick="showCoverHot()">Hot</a></li>
+                    <li><a href="javascript:void(0);" onclick="showCoverSort()">Industry</a></li>
+                    <li><a href="javascript:void(0);" onclick="showCoverAbout()">About</a></li>
+                    <li><a href="javascript:void(0);" onclick="toCh()">中文</a></li>
 
                 </ul>
             </div>
@@ -151,8 +151,12 @@
 
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff;text-indent:2em;">
                 
-                    <p>南宁海蓝数据有限公司是广西科学院下属院所创办的国有控股企业，是广西科技厅认证的自治区级数字化工程技术研究中心。在保持大规模图文影像资料的数字化采集处理优势的同时，加强互联网与物联网传感器数据采集，扩展室内空间三维数字化技术研究与服务业务。</p>
-                    <p>目前我司在广西科技厅的支持下正在与德国NavVis开展国际合作，共建联合实验室，开展商场精准营销、会展导览、工业设计、室内导航等电子政务、商业和工业领域的应用，提供基于真实场景的室内导航、导览、导购、导医、导视等行业应用解决方案。</p>
+                    <p>
+                        Nanning HighLand Digital Technology,Inc. is a state-owned holding enterprise founded by the Guangxi Academy of Sciences. It is the autonomous region level digital engineering technology research center which is accredited by Department of Science and Technology of Guangxi Zhuang Autonomous Region. While maintaining the advantages of digital collection and processing of large-scale teletext data, we will strengthen the data collection of the Internet and the networking sensor data acquisition, and expand the research and service of three-dimensional digital technology in indoor space.
+                    </p>
+                    <p>
+                        At present, our company is carrying out international cooperation with the German NavVis, with the support of the Department of Science and Technology of Guangxi Zhuang Autonomous Region, building a joint laboratory,  carrying out shopping malls, precision marketing, exhibition guidance, industrial design, indoor navigation and other e-government, commercial and industrial applications,providing indoor navigation based on real scene navigation, shopping guide, medical guide, guide industry application solutions.
+                    </p>
                 
             </div>
 
@@ -176,7 +180,7 @@
                 <div class="panel-heading">
                     <div class="input-group">
                         <input id="industry_id" type="text" style="display: none;" value="" />
-                        <input id="input_param" type="text" class="form-control border-radius" placeholder="搜索" oninput="searchProject()" />
+                        <input id="input_param" type="text" class="form-control border-radius" placeholder="Search" oninput="searchProject()" />
                         <span class="input-group-addon">
                             <span class="fa fa-search"></span>
                         </span>
@@ -186,7 +190,6 @@
                 </div>
                 <div class="panel-body projectlist">
                 </div>
-                
 
             </div>
         </div>
@@ -207,6 +210,7 @@
                 <div id="POI_body" class="panel-body" style="height: 100%;">
                 </div>
                 <div class="panel-footer"></div>
+
             </div>
         </div>
     </div>
@@ -215,7 +219,7 @@
         <div class="container" style="margin-bottom: 10px; padding: 20px;">
             <div class="panel panel-default" style="width: 100%; height: 100%;">
                 <div class="panel-heading">
-                    分享
+                    Share
                     <a class="pull-right tooltip-viewport-bottom" style="margin: 2px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
                 </div>
                 <div class="panel-body">

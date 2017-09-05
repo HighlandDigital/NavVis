@@ -13,6 +13,7 @@ public class searchHandler : IHttpHandler
         context.Response.ContentType = "text/plain";
 
         string method = context.Request["method"];
+            string lang = context.Request["lang"];
         string result = "";
 
         if (method == "searchProjectHot")

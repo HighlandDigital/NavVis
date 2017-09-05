@@ -20,20 +20,22 @@ namespace DAO
             //
         }
         
-        public bool Add(string name, string description, string img_url, int listorder)
+        public bool Add(string name, string name_en, string description, string img_url, int listorder)
         {
             SqlParameter[] parameters =
             {
                new SqlParameter("@name",SqlDbType.NVarChar),
+               new SqlParameter("@name_en",SqlDbType.NVarChar),
                new SqlParameter("@description",SqlDbType.NVarChar),
                new SqlParameter("@img_url",SqlDbType.NVarChar),
                new SqlParameter("@listorder",SqlDbType.Int)
              };
             parameters[0].Value = name;
-            parameters[1].Value = description;
-            parameters[2].Value = img_url;
-            parameters[3].Value = listorder;
-            string strSql = "insert into obj_industry(name, description, img_url, listorder) values(@name, @description, @img_url, @listorder)";
+            parameters[1].Value = name_en;
+            parameters[2].Value = description;
+            parameters[3].Value = img_url;
+            parameters[4].Value = listorder;
+            string strSql = "insert into obj_industry(name, name_en, description, img_url, listorder) values(@name, @name_en, @description, @img_url, @listorder)";
             bool IsSuccess = false;
             try
             {
@@ -50,22 +52,24 @@ namespace DAO
             return IsSuccess;
         }
 
-        public bool Update(int id, string name, string description, string img_url, int listorder)
+        public bool Update(int id, string name, string name_en, string description, string img_url, int listorder)
         {
             SqlParameter[] parameters =
             {
                new SqlParameter("@name",SqlDbType.NVarChar),
+               new SqlParameter("@name_en",SqlDbType.NVarChar),
                new SqlParameter("@description",SqlDbType.NVarChar),
                new SqlParameter("@img_url",SqlDbType.NVarChar),
                new SqlParameter("@listorder",SqlDbType.Int),
                new SqlParameter("@id",SqlDbType.Int)
             };
             parameters[0].Value = name;
-            parameters[1].Value = description;
-            parameters[2].Value = img_url;
-            parameters[3].Value = listorder;
-            parameters[4].Value = id;
-            string strSql = "update obj_industry set name=@name,description=@description,img_url=@img_url,listorder=@listorder where id=@id";
+            parameters[1].Value = name_en;
+            parameters[2].Value = description;
+            parameters[3].Value = img_url;
+            parameters[4].Value = listorder;
+            parameters[5].Value = id;
+            string strSql = "update obj_industry set name=@name,name_en=@name_en,description=@description,img_url=@img_url,listorder=@listorder where id=@id";
             bool IsSuccess = false;
             try
             {

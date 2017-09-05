@@ -23,7 +23,7 @@ namespace BLL
         public DataTable getHotProject(int number)
         {
             int count = 0;
-            DataTable dt = new DAO_project().GetList(1, number, "", "", true, 0, 0, "hotorder asc", out count);
+            DataTable dt = new DAO_project().GetList(1, number, "", true, 0, 0, "hotorder asc", out count);
             return dt;
         }
 
@@ -32,7 +32,7 @@ namespace BLL
             int s = 0;
             int.TryParse(sort, out s);
             int count = 0;
-            DataTable dt = new DAO_project().GetList(1, pageSize, param, param, false, 0, s, "name", out count);
+            DataTable dt = new DAO_project().GetList(1, pageSize, param, false, 0, s, "name", out count);
             return dt;
         }
     } 
