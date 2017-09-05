@@ -40,6 +40,7 @@
                 'ui.floorchanger.visible': false,
                 'ui.poi_panel.visible': false,
                 'ui.search.visible': false,
+                'layers.map.visible': false,
                 onLoadComplete: function () {
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
 

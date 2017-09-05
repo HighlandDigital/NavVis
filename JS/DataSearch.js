@@ -59,22 +59,25 @@ function searchProjectHot() {
             lang: language
         },
         success: function (data) {
-            if (!data || data.length == 0) return;
             var d = "";
-            for (var i = 0; i < data.length; i++) {
-                var title = "";
-                if (language == "CH") title = data[i].name;
-                else if (language == "EN") title = data[i].name_en;
-                var content = "<div class=\"col-xs-12 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
-                    "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
-                    "<div class=\"panel panel-default\">" +
-                    "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                    "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" />" +
-                    "</div>" +
-                    "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
-                    "</div></a></div>";
-                d = d + content;
+            if (!data || data.length == 0) d = "没有找到项目";
+            else {
+                for (var i = 0; i < data.length; i++) {
+                    var title = "";
+                    if (language == "CH") title = data[i].name;
+                    else if (language == "EN") title = data[i].name_en;
+                    var content = "<div class=\"col-xs-12 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
+                        "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
+                        "<div class=\"panel panel-default\">" +
+                        "<div class=\"panel-body\" style=\"padding:0px;\">" +
+                        "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
+                        "</div>" +
+                        "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
+                        "</div></a></div>";
+                    d = d + content;
+                }
             }
+            
             $(".hotlist").html(d);
         },
         dataType: "json"
@@ -93,22 +96,25 @@ function searchProject() {
             lang: language
         },
         success: function (data) {
-            if (!data || data.length == 0) return;
             var d = "";
-            for (var i = 0; i < data.length; i++) {
-                var title = "";
-                if (language == "CH") title = data[i].name;
-                else if (language == "EN") title = data[i].name_en;
-                var content = "<div class=\"col-xs-12 col-sm-12 placeholder\" style=\"margin-top: 10px;\">" +
-                    "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
-                    "<div class=\"panel panel-default\">" +
-                    "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                    "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" />" +
-                    "</div>" +
-                    "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
-                    "</div></a></div>";
-                d = d + content;
+            if (!data || data.length == 0) d = "没有找到项目";
+            else {
+                for (var i = 0; i < data.length; i++) {
+                    var title = "";
+                    if (language == "CH") title = data[i].name;
+                    else if (language == "EN") title = data[i].name_en;
+                    var content = "<div class=\"col-xs-12 col-sm-12 placeholder\" style=\"margin-top: 10px;\">" +
+                        "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
+                        "<div class=\"panel panel-default\">" +
+                        "<div class=\"panel-body\" style=\"padding:0px;\">" +
+                        "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
+                        "</div>" +
+                        "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
+                        "</div></a></div>";
+                    d = d + content;
+                }
             }
+            
             $(".projectlist").html(d);
         },
         dataType: "json"
@@ -125,22 +131,25 @@ function searchIndustry() {
             lang: language
         },
         success: function (data) {
-            if (!data || data.length == 0) return;
             var d = "";
-            for (var i = 0; i < data.length; i++) {
-                var title = "";
-                if (language == "CH") title = data[i].name;
-                else if (language == "EN") title = data[i].name_en;
-                var content = "<div class=\"col-xs-6 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
-                    "<a href=\"javascript:void(0);\" onclick=\"showCoverProj('" + data[i].id + "')\">" +
-                    "<div class=\"panel panel-default\">"+
-                    "<div class=\"panel-body\" style=\"padding:0px;\">"+
-                    "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].name + "\" />" +
-                    "</div>"+
-                    "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
-                    "</div></a></div>";
-                d = d + content;
+            if (!data || data.length == 0) d = "没有找到项目";
+            else {
+                for (var i = 0; i < data.length; i++) {
+                    var title = "";
+                    if (language == "CH") title = data[i].name;
+                    else if (language == "EN") title = data[i].name_en;
+                    var content = "<div class=\"col-xs-6 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
+                        "<a href=\"javascript:void(0);\" onclick=\"showCoverProj('" + data[i].id + "')\">" +
+                        "<div class=\"panel panel-default\">" +
+                        "<div class=\"panel-body\" style=\"padding:0px;\">" +
+                        "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].name + "\" onerror=\"this.src='../image/default/industry_default.jpg'\"/>" +
+                        "</div>" +
+                        "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
+                        "</div></a></div>";
+                    d = d + content;
+                }
             }
+            
             $(".sortlist").html(d);
         },
         dataType: "json"
