@@ -45,7 +45,7 @@
             </tr>
             <tr style="border-style: none none ridge none; border-bottom-width: 1px; border-bottom-color: #FF0000; text-align: left;"  >
                 <td class="auto-style1">热点编号</td>
-                <td class="auto-style2"><input id="iv_id" value="0" style="width: 300px;" type="text" /></td>
+                <td class="auto-style2"><input id="iv_id" value="0" style="width: 300px;" type="text" readonly="readonly"  /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px">标题</td>
@@ -103,6 +103,8 @@
 
         $(function () {
 
+
+            $("#iv_id").val(guid());
 
 
             $.ajax({
@@ -201,6 +203,13 @@
                 });
             }
         });
+
+        function guid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
 
         function reback()
         {
