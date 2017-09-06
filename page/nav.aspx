@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>第14届中国—东盟博览会先进技术展</title>
+    <title>第14届中国—东盟博览会虚拟导览</title>
     <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="../style/css/ishare.css" />
 
@@ -43,7 +43,8 @@
                 'layers.map.visible': false,
                 onLoadComplete: function () {
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
-
+                    indoorviewer.setLanguage("zh");
+                    loadcss("../style/theme/bootstrap.min.darkly.css");
                 }
             });
 
@@ -123,9 +124,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">虚拟导览</a>
+                <a class="navbar-brand" href="#">全科盟展区</a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverProj(0)"><span class="fa fa-search"></span></a>
-                <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare();"><span class="fa fa-share"></span></a>
+                <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare()"><span class="glyphicon glyphicon-share"></span></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -147,8 +148,10 @@
 
     </div>
     <div id="cover_about" class="cover">
-        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
-        <div class="container" style="margin-top: 70px;">
+        <div class="row">
+            <a class="pull-right tooltip-viewport-bottom" style="margin-top: 10px;margin-right:20px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove" style="font-size:40px;"></span></a>
+        </div>
+        <div class="container" style="margin-top: 10px;margin-bottom:50px;">
 
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff;text-indent:2em;">
                 
@@ -160,55 +163,52 @@
         </div>
     </div>
     <div id="cover_hot" class="cover">
-
-        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+        <div class="row">
+            <a class="pull-right tooltip-viewport-bottom" style="margin-top: 10px;margin-right:20px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove" style="font-size:40px;"></span></a>
+        </div>
         <div class="container hotlist">
         </div>
     </div>
     <div id="cover_sort" class="cover">
-
-        <a class="pull-right tooltip-viewport-bottom" style="margin: 10px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+        <div class="row">
+            <a class="pull-right tooltip-viewport-bottom" style="margin-top: 10px;margin-right:20px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove" style="font-size:40px;"></span></a>
+        </div>
         <div class="container sortlist">
         </div>
     </div>
     <div id="cover_project" class="cover">
         <div class="container" style="margin-bottom: 10px; padding: 20px;">
-            <div class="panel panel-default" style="width: 100%; height: 100%;">
-                <div class="panel-heading">
+                <div class="row" style="padding-left: 20px; padding-right: 20px;">
                     <div class="input-group">
                         <input id="industry_id" type="text" style="display: none;" value="" />
                         <input id="input_param" type="text" class="form-control border-radius" placeholder="搜索" oninput="searchProject()" />
                         <span class="input-group-addon">
                             <span class="fa fa-search"></span>
                         </span>
-                        <a class="pull-right tooltip-viewport-bottom" style="margin: 5px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+                        <a class="pull-right tooltip-viewport-bottom" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove" style="font-size:35px;"></span></a>
                     </div>
 
                 </div>
-                <div class="panel-body projectlist">
+                <div class="row projectlist" style="padding-top: 10px;padding-left:5px;padding-right:5px;">
                 </div>
                 
 
-            </div>
         </div>
     </div>
+    
     <div id="cover_poi" class="cover" style="display: none;">
         <div class="container" style="margin-bottom: 10px; padding: 20px;">
-            <div class="panel panel-default" style="width: 100%; height: 100%;">
-                <div class="panel-heading">
-
-                    <div class="input-group">
-                        <input id="POI_title" type="text" class="form-control" placeholder="title" style="border: 0px; background-color: transparent;" readonly="readonly" />
-                        <span class="input-group-addon" style="border: 0px; background-color: transparent;">
-                            <a class="pull-right tooltip-viewport-bottom" style="" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
-                        </span>
+                <div class="row">
+                    <div class="col-xs-10">
+                        <h3 id="POI_title"></h3>
                     </div>
-
+                    <div class="col-xs-2">
+                        <a class="pull-right" href="javascript:void(0);" style="margin:10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size:40px;"></span></a>
+                        
+                    </div>
                 </div>
-                <div id="POI_body" class="panel-body" style="height: 100%;">
+                <div id="POI_body" style="height: 100%;">
                 </div>
-                <div class="panel-footer"></div>
-            </div>
         </div>
     </div>
 
@@ -247,7 +247,6 @@
         </div>
 
     </div>
-
 
 </body>
 </html>
