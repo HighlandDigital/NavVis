@@ -66,7 +66,7 @@ function searchProjectHot() {
                     var title = "";
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
-                    var content = "<div class=\"col-xs-12 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
+                    var content = "<div class=\"col-xs-12 col-sm-6 col-lg-6 placeholder\" style=\"margin-top: 10px;\">" +
                         "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
@@ -97,13 +97,13 @@ function searchProject() {
         },
         success: function (data) {
             var d = "";
-            if (!data || data.length == 0) d = "没有找到项目";
+            if (!data || data.length == 0) d = "<div class=\"alert alert-warning\" role=\"alert\" style=\"margin-left: 15px;margin-right: 15px;\">没有找到项目</div>";
             else {
                 for (var i = 0; i < data.length; i++) {
                     var title = "";
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
-                    var content = "<div class=\"col-xs-12 col-sm-12 placeholder\" style=\"margin-top: 10px;\">" +
+                    var content = "<div class=\"col-xs-12 col-sm-6 col-lg-6 placeholder\">" +
                         "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
@@ -138,7 +138,7 @@ function searchIndustry() {
                     var title = "";
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
-                    var content = "<div class=\"col-xs-6 col-sm-6 placeholder\" style=\"margin-top: 10px;\">" +
+                    var content = "<div class=\"col-xs-6 col-sm-6 col-lg-4 placeholder\" style=\"margin-top: 10px;\">" +
                         "<a href=\"javascript:void(0);\" onclick=\"showCoverProj('" + data[i].id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
@@ -168,11 +168,11 @@ function searchPointByIVID(id) {
             if (!data || data.length == 0) return;
             var d = data[0];
             if (language == "CH") {
-                $("#POI_title").val(d.title);
+                $("#POI_title").html(d.title);
                 $("#POI_body").html(d.description_mod);
             }
             else if (language == "EN") {
-                $("#POI_title").val(d.title_en);
+                $("#POI_title").html(d.title_en);
                 $("#POI_body").html(d.description_en_mod);
             }
             
@@ -202,4 +202,27 @@ function getRootPath() {
     var prePath = strFullPath.substring(0, pos);
     //var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
     return (prePath + "/");
+}
+
+function loadcss(path){
+    if(!path || path.length === 0){
+        throw new Error('argument "path" is required !');
+    }
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.href = path;
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    head.appendChild(link);
+}
+
+function loadjs(path){
+    if(!path || path.length === 0){
+        throw new Error('argument "path" is required !');
+    }
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.src = path;
+    script.type = 'text/javascript';
+    head.appendChild(script);
 }
