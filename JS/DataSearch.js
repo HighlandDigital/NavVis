@@ -66,11 +66,11 @@ function searchProjectHot() {
                     var title = "";
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
-                    var content = "<div class=\"col-xs-12 col-sm-6 col-lg-6 placeholder\" style=\"margin-top: 10px;\">" +
+                    var content = "<div class=\"col-xs-12 col-sm-12 col-lg-12 placeholder\" style=\"margin-top: 10px;\">" +
                         "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                        "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
+                        "<img style=\"width:100%;\" src=\""  + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
                         "</div>" +
                         "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
                         "</div></a></div>";
@@ -103,11 +103,11 @@ function searchProject() {
                     var title = "";
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
-                    var content = "<div class=\"col-xs-12 col-sm-6 col-lg-6 placeholder\">" +
+                    var content = "<div class=\"col-xs-12 col-sm-12 col-lg-12 placeholder\">" +
                         "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                        "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
+                        "<img style=\"width:100%;\" src=\""  + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
                         "</div>" +
                         "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
                         "</div></a></div>";
@@ -138,11 +138,11 @@ function searchIndustry() {
                     var title = "";
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
-                    var content = "<div class=\"col-xs-6 col-sm-6 col-lg-4 placeholder\" style=\"margin-top: 10px;\">" +
+                    var content = "<div class=\"col-xs-12 col-sm-6 col-lg-6 placeholder\" style=\"margin-top: 10px;\">" +
                         "<a href=\"javascript:void(0);\" onclick=\"showCoverProj('" + data[i].id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                        "<img style=\"width:100%;\" src=\"" + getRootPath() + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].name + "\" onerror=\"this.src='../image/default/industry_default.jpg'\"/>" +
+                        "<img style=\"width:100%;\" src=\""  + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].name + "\" onerror=\"this.src='../image/default/industry_default.jpg'\"/>" +
                         "</div>" +
                         "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
                         "</div></a></div>";
