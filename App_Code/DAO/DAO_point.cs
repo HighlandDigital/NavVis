@@ -86,6 +86,8 @@ namespace DAO
             parameters[8].Value = locked;
             parameters[9].Value = id;
             string strSql = "update obj_point set iv_id=@iv_id,title=@title,title_en=@title_en,title_img_url=@title_img_url,description=@description,description_mod=@description_mod,description_en=@description_en,description_en_mod=@description_en_mod,locked=@locked where id=@id";
+
+
             bool IsSuccess = false;
             try
             {
@@ -146,6 +148,37 @@ namespace DAO
             return new SQL().Query(strSql.ToString(), parameters).Tables[0];
         }
 
+
+        /// <summary>
+        /// 重新生成html代码并更新数据库
+        /// </summary>
+        /// <param name="strid"></param>
+        /// <param name="htmlcode"></param>
+        /// <returns></returns>
+        public bool recreate(bool locked,string htmlcode )
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update obj_point set description_mod=REPLACE(REPLACE(REPLACE(@htmlcode,'$title$',title),'$title_img_url$',title_img_url),'$description$',description), description_en_mod=REPLACE(REPLACE(REPLACE(@htmlcode,'$title$',title_en),'$title_img_url$',title_img_url),'$description$',description_en)");
+            if (locked == true)
+            {
+                strSql.Append(" where locked=@locked");
+            }
+            SqlParameter[] parameters = {
+                   new SqlParameter("@locked", SqlDbType.Bit),
+                   new SqlParameter("@htmlcode", SqlDbType.VarChar,2000)
+            };
+            parameters[0].Value = locked;
+            parameters[1].Value = htmlcode;
+            int rows = new SQL().ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public DataTable GetList(int pageNum, int pageSize, string title, string description, string orderBy, out int count)
         {
             StringBuilder sqlStr = new StringBuilder();//查询结果集
