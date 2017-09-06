@@ -143,8 +143,8 @@ namespace BLL
         public string addPoint(string iv_id, string title, string title_en, string title_img_url, string description, string description_en, bool locked, string iv_img_url)
         {
 
-            string description_mod = create(title, iv_img_url, description);
-            string description_en_mod = create(title_en, iv_img_url, description_en);
+            string description_mod = create(title, title_img_url, description);
+            string description_en_mod = create(title_en, title_img_url, description_en);
             bool isok = new DAO_point().Add(iv_id, title, title_en, title_img_url, description, description_mod, description_en, description_en_mod, locked);
 
             if (isok == true)
@@ -187,8 +187,8 @@ namespace BLL
             //20170904 李久丹 不锁定则修改模板
             if (locked == false)
             {
-                description_mod = create(title, iv_img_url, description);
-                description_en_mod = create(title_en, iv_img_url, description_en);
+                description_mod = create(title, title_img_url, description);
+                description_en_mod = create(title_en, title_img_url, description_en);
 
             }
             bool isok = new DAO_point().Update(id,  iv_id,  title,  title_en,  title_img_url,  description,  description_mod,  description_en,  description_en_mod,  locked);

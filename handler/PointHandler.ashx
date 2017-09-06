@@ -62,8 +62,8 @@ public class PointHandler : IHttpHandler {
         if (method == "create")
         {
             string strid = context.Request["id"];
-           
 
+            result = new BLL.BLL_point().recreate(strid);
         
         }
 

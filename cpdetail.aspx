@@ -56,14 +56,14 @@
                 <td><input id="title_en" value="0" style="width: 300px;" type="text" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
-                <td style="width: 100px">标题图标</td>
+                <td style="width: 100px">图标</td>
                 <td><img id="title_img" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px"></td>
                 <td><input id="title_img_url"  style="width: 300px;" type="text" /></td>
             </tr>
-            <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
+            <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;display:none"  >
                 <td style="width: 100px">热点图标</td>
                 <td><input id="iv_img_url"  style="width: 300px;" type="text" /></td>
             </tr>
