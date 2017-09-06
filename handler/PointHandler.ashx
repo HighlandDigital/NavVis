@@ -46,14 +46,16 @@ public class PointHandler : IHttpHandler {
             string strlocked = context.Request["locked"];
             if (strlocked=="1")
                 locked = true;
+
+            string iv_img_url = context.Request["iv_img_url"];
             if(id==0)
             {//添加
-                result = new BLL.BLL_point().addPoint(iv_id,  title,  title_en,  title_img_url,  description,   description_en,   locked);
+                result = new BLL.BLL_point().addPoint(iv_id, title, title_en, title_img_url, description, description_en, locked, iv_img_url);
             }
             else
             {//修改
 
-                result = new BLL.BLL_point().edit(id,  iv_id,  title,  title_en,  title_img_url,  description,  description_mod,  description_en,  description_en_mod,  locked);
+                result = new BLL.BLL_point().edit(id, iv_id, title, title_en, title_img_url, description, description_mod, description_en, description_en_mod, locked, iv_img_url);
             }
         }
 

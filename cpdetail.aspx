@@ -56,13 +56,18 @@
                 <td><input id="title_en" value="0" style="width: 300px;" type="text" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
-                <td style="width: 100px">图标</td>
+                <td style="width: 100px">标题图标</td>
                 <td><img id="title_img" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px"></td>
                 <td><input id="title_img_url"  style="width: 300px;" type="text" /></td>
             </tr>
+            <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
+                <td style="width: 100px">热点图标</td>
+                <td><input id="iv_img_url"  style="width: 300px;" type="text" /></td>
+            </tr>
+
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px">锁定</td>
                 <td><input id="locked" value="1"   type="checkbox" /></td>
@@ -229,10 +234,11 @@
             var description_en = $("#description_en").val();
             var description_mod = UE.getEditor('description_mod').getContent();
             var description_en_mod = UE.getEditor('description_en_mod').getContent();
+            var iv_img_url = $("#iv_img_url").val();
 
 
             $.post("Handler/PointHandler.ashx",
-            { "ac": "sumit", "id": id, "iv_id": iv_id, "title": title, "title_en": title_en, "title_img_url": title_img_url, "locked": locked, "description": description, "description_en": description_en, "description_mod": description_mod, "description_en_mod": description_en_mod },
+            { "ac": "sumit", "id": id, "iv_id": iv_id, "title": title, "title_en": title_en, "title_img_url": title_img_url, "locked": locked, "description": description, "description_en": description_en, "description_mod": description_mod, "description_en_mod": description_en_mod ,"iv_img_url":iv_img_url},
               function (data) {
                   //提示操作结果
                  // alert(data.msg);

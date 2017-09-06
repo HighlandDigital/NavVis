@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Text;
+using System.IO;
 
 using Newtonsoft.Json;
 using DAO;
@@ -24,7 +26,8 @@ namespace BLL
         /// <summary>
         /// 热点html代码
         /// </summary>
-        private string htmlcodemodel = "<img src=\"../image/temp/$title_img_url$\" style=\"width:100%;\" alt=\"$title$\"/> <div>$description$</div>";
+        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:95%;\" alt=\"$title$\"/> <div>$description$</div>";
+
 
 
         public string Loadindustry()
@@ -137,11 +140,11 @@ namespace BLL
         /// <param name="description_en"></param>
         /// <param name="locked"></param>
         /// <returns></returns>
-        public string addPoint(string iv_id, string title, string title_en, string title_img_url, string description,  string description_en,  bool locked)
-        {    
+        public string addPoint(string iv_id, string title, string title_en, string title_img_url, string description, string description_en, bool locked, string iv_img_url)
+        {
 
-            string description_mod = create(title, title_img_url, description);
-            string description_en_mod = create(title_en, title_img_url, description_en);
+            string description_mod = create(title, iv_img_url, description);
+            string description_en_mod = create(title_en, iv_img_url, description_en);
             bool isok = new DAO_point().Add(iv_id, title, title_en, title_img_url, description, description_mod, description_en, description_en_mod, locked);
 
             if (isok == true)
@@ -177,15 +180,15 @@ namespace BLL
         /// <param name="description_en"></param>
         /// <param name="locked"></param>
         /// <returns></returns>
-        public string edit(int id, string iv_id, string title, string title_en, string title_img_url, string description, string description_mod, string description_en, string description_en_mod, bool locked)
+        public string edit(int id, string iv_id, string title, string title_en, string title_img_url, string description, string description_mod, string description_en, string description_en_mod, bool locked, string iv_img_url)
         {
           
 
             //20170904 李久丹 不锁定则修改模板
             if (locked == false)
             {
-                 description_mod = create(title, title_img_url, description);
-                 description_en_mod = create(title_en, title_img_url, description_en);
+                description_mod = create(title, iv_img_url, description);
+                description_en_mod = create(title_en, iv_img_url, description_en);
 
             }
             bool isok = new DAO_point().Update(id,  iv_id,  title,  title_en,  title_img_url,  description,  description_mod,  description_en,  description_en_mod,  locked);
@@ -260,6 +263,7 @@ namespace BLL
         {
             string strjson = "";
             strjson = htmlcodemodel;
+          //  strjson=getDataFromFile("");
             strjson = strjson.Replace("$title$",title);
             strjson = strjson.Replace("$title_img_url$", title_img_url);
             strjson = strjson.Replace("$description$", description);
@@ -289,6 +293,8 @@ namespace BLL
             return json;
         }
 
+
+
         /// <summary>
         ///DataGridBean 的摘要说明
         /// </summary>
@@ -301,6 +307,29 @@ namespace BLL
 
             [JsonProperty("rows")]
             public DataTable Rows { get; set; }
+        }
+
+        private string getDataFromFile(string path)
+        {
+            StreamReader sr = null;
+            try
+            {
+                sr = new StreamReader(path, Encoding.UTF8);
+                return sr.ReadToEnd();
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            finally
+            {
+                if (sr != null)
+                {
+                    sr.Close();
+                }
+            }
+
         }
     } 
 }
