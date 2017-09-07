@@ -26,7 +26,7 @@ namespace BLL
         /// <summary>
         /// 热点html代码
         /// </summary>
-        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:100%;\" alt=\"$title$\"/> <div>$description$</div>";
+        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:100%;margin-bottom:5px;\" alt=\"$title$\"/> <div>$description$</div>";
 
 
 

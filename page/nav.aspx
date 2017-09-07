@@ -207,7 +207,7 @@
                         
                     </div>
                 </div>
-                <hr class="featurette-divider" style="margin-top:5px;"/>
+                <hr class="featurette-divider" style="margin-top:5px;border-top:1px solid #0ce3ac;"/>
                 <div id="POI_body" style="height: 100%;">
                 </div>
         </div>
