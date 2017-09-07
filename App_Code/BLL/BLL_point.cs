@@ -46,29 +46,43 @@ namespace BLL
 
         public string delPointByID(int id)
         {          
+            DataTable dt = new DAO_point().GetByID(id);
+            if (dt.Rows.Count > 0)
+            {
+                string ivid=dt.Rows[0]["iv_id"].ToString();
 
-           bool isok= new DAO_point().DeleteByID(id);
+                new DAO_project().DeleteByIVID(ivid);
 
-           if (isok == true)
-           {
-               var send = new
-               {
-                   msg = "操作成功！",
-                   success = "true"
-               };
-               return JsonConvert.SerializeObject(send);
-           }
-           else
-           {
-               var send = new
-               {
-                   msg = "操作失败！",
-                   success = "false"
-               };
-               return JsonConvert.SerializeObject(send);
-           }
-   
-        
+                bool isok = new DAO_point().DeleteByID(id);
+
+                if (isok == true)
+                {
+                    var send = new
+                    {
+                        msg = "操作成功！",
+                        success = "true"
+                    };
+                    return JsonConvert.SerializeObject(send);
+                }
+                else
+                {
+                    var send = new
+                    {
+                        msg = "操作失败！",
+                        success = "false"
+                    };
+                    return JsonConvert.SerializeObject(send);
+                }
+            }
+            else
+            {
+                var send = new
+                {
+                    msg = "操作失败！",
+                    success = "false"
+                };
+                return JsonConvert.SerializeObject(send);
+            }      
         }
 
         /// <summary>
