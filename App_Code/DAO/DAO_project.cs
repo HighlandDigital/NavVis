@@ -112,6 +112,27 @@ namespace DAO
             return IsSuccess;
         }
 
+
+        public bool DeleteByIVID(string ivid)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from obj_project");
+            strSql.Append(" where iv_id=@ivid");
+            SqlParameter[] parameters = {
+                   new SqlParameter("@ivid", SqlDbType.NVarChar)
+            };
+            parameters[0].Value = ivid;
+            int rows = new SQL().ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool DeleteByID(int id)
         {
             StringBuilder strSql = new StringBuilder();
