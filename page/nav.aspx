@@ -45,6 +45,8 @@
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
                     indoorviewer.setLanguage("zh");
                     loadcss("../style/theme/bootstrap.min.darkly.css");
+                    $("#introduce_img").attr("src", "../image/default/introduce.jpg");
+                    $("#hl_img").attr("src", "../image/default/hl.jpg");
                     loadIndustryArray();
                 }
             });
@@ -148,17 +150,53 @@
         <div ng-include src="'iv.html'" style="width: 100%; height: 100%;"></div>
 
     </div>
-    <div id="cover_about" class="cover">
-        <div class="row">
-            <a class="pull-right tooltip-viewport-bottom" style="margin-top: 10px;margin-right:20px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove" style="font-size:40px;"></span></a>
-        </div>
-        <div class="container" style="margin-top: 10px;margin-bottom:50px;">
+    <div id="cover_qkm" class="cover" style="display: block;">
 
+        <div class="container" style="margin-top: 10px; margin-bottom: 70px;">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3>全科盟：中国科技，引领广西，走进东盟</h3>
+                </div>
+                <div class="col-xs-2">
+                    <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
+
+                </div>
+            </div>
+            <hr class="featurette-divider" style="margin-top: 5px; border-top: 1px solid #0ce3ac;" />
+            <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff; text-indent: 2em;">
+                <p>为进一步推进国内科研院所优秀科技成果在广西落地并引领促进广西产业升级转型，推进科技成果在东盟国家的转移转化并促进东盟国家的创新发展，切实服务于我国的“一路一带”战略。全域科研院所科技成果转化联盟（简称“全科盟”）、广西科学院、广西自治区科协，整合了国内科学院最新的适合广西和东盟国家的成果，以“全国科学院科技成果联展”的形式参展本届东博会先进技术展。</p>
+                <p>在中国-东盟技术转移中心的支持和指导下，全科盟充分调动各成员和合作单位参展的积极性，组织了中国科学院、中国农业科学院、各省市自治区科学院的63家科研院所和企业参展，确保了本次联展的技术来源和技术水准。广西科学院与广西自治区科学技术协会充分发挥属地优势，不仅推出了的多项极具地域特色的科技成果，而且精心筹划全方位保障了本次联展的成功举行。</p>
+                <img id="introduce_img" src="" alt="" style="width: 100%;margin-bottom:15px;" />
+                <p>针对东盟国家和广西自治区的自然环境和经济社会特点，全科盟精心挑选了200项创新型、实用型的科技成果参展，涉及大健康、农业、生态环保、新材料、海洋资源开发利用、新一代信息技术、产业园区与科技小镇建设7个领域，展品120余件，为中外来宾和南宁市民展现一场多领域、高水平、全新感受的“科技盛宴”。</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 placeholder" style="text-align: center">
+                <a class="btn btn-success" href="javascript:void(0);" onclick="hideCover()">进入展会</a>
+            </div>
+        </div>
+    </div>
+    <div id="cover_about" class="cover">
+        
+        <div class="container" style="margin-top: 10px;margin-bottom:50px;">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3>南宁海蓝数据有限公司</h3>
+                </div>
+                <div class="col-xs-2">
+                    <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
+
+                </div>
+            </div>
+            <hr class="featurette-divider" style="margin-top: 5px; border-top: 1px solid #0ce3ac;" />
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff;text-indent:2em;">
                 
                     <p>南宁海蓝数据有限公司是广西科学院下属院所创办的国有控股企业，是广西科技厅认证的自治区级数字化工程技术研究中心。在保持大规模图文影像资料的数字化采集处理优势的同时，加强互联网与物联网传感器数据采集，扩展室内空间三维数字化技术研究与服务业务。</p>
                     <p>目前我司在广西科技厅的支持下正在与德国NavVis开展国际合作，共建联合实验室，开展商场精准营销、会展导览、工业设计、室内导航等电子政务、商业和工业领域的应用，提供基于真实场景的室内导航、导览、导购、导医、导视等行业应用解决方案。</p>
                 
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 placeholder"></div>
+                <div class="col-xs-4 col-sm-4 placeholder" style="text-align:center;"><img id="hl_img" src="" alt="" style="width: 100%;max-width:150px;margin-top:15px;margin-bottom:15px;" /></div>
+                <div class="col-xs-4 col-sm-4 placeholder"></div>
             </div>
 
         </div>

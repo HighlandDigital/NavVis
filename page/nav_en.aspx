@@ -45,6 +45,8 @@
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
                     indoorviewer.setLanguage("en");
                     loadcss("../style/theme/bootstrap.min.darkly.css");
+                    $("#introduce_img").attr("src", "../image/default/introduce.jpg");
+                    $("#hl_img").attr("src", "../image/default/hl.jpg");
                     loadIndustryArray();
                 }
             });
@@ -84,7 +86,7 @@
 
             xshare = (new iShare({
                 container: '.iShare', config: {
-                    title: '分享212',
+                    title: 'Share',
                     description: '',
                     url: window.location.href,
                     //isAbroad: false, //国内分享
@@ -95,7 +97,7 @@
                         isTitleVisibility: true,
                         title: '',
                         isTipVisibility: true,
-                        tip: '打开微信，扫描二维码，分享给我的朋友圈',
+                        tip: 'Share with my friend on Wechat',
                         qrcodeW: 180,
                         qrcodeH: 180,
                         qrcodeBgc: '#fff',
@@ -148,12 +150,43 @@
         <div ng-include src="'iv.html'" style="width: 100%; height: 100%;"></div>
 
     </div>
-    <div id="cover_about" class="cover">
-        <div class="row">
-            <a class="pull-right tooltip-viewport-bottom" style="margin-top: 10px;margin-right:20px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove" style="font-size:40px;"></span></a>
-        </div>
-        <div class="container" style="margin-top: 10px;margin-bottom:50px;">
+    <div id="cover_qkm" class="cover" style="display: block;">
 
+        <div class="container" style="margin-top: 10px; margin-bottom: 70px;">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3>The WIAAT</h3>
+                </div>
+                <div class="col-xs-2">
+                    <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
+
+                </div>
+            </div>
+            <hr class="featurette-divider" style="margin-top: 5px; border-top: 1px solid #0ce3ac;" />
+            <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff; text-indent: 2em;">
+                <p>In order to further promote the domestic scientific research institutes of outstanding scientific and technological achievements in Guangxi landing and lead Guangxi to promote industrial upgrading, promote scientific and technological achievements to promote the innovation and development of ASEAN countries in the transformation of the ASEAN countries, and in the service of our country B&R strategy. The transformation of scientific and technological achievements of World Institutions Allance for Achievements Transformation (referred to as "WIAAT"), the Guangxi Academy of Sciences, Guangxi Autonomous Region Association for science and technology, the integration of the Academy of the new Guangxi and the ASEAN countries to the results, the National Academy of science and Technology Achievements Exhibition "in the form of the Expo exhibition of advanced technology. </p>
+                <p>In the Chinese ASEAN Center for technology transfer under the guidance and support, the WIAAT fully mobilize the enthusiasm of the members and the cooperative units participating, 63 Research Institute organized China Academy of Sciences, Chinese Academy of Agricultural Sciences, Academy of Sciences of the provinces and autonomous regions and enterprises, to ensure that the source of technology of this exhibition and technical standards. Guangxi Academy of Sciences and the Guangxi autonomous region science and Technology Association and give full play to local advantages, not only launched a number of geographical characteristics of the scientific and technological achievements, and careful planning to protect the full range of this exhibition was held successfully.</p>
+                <img id="introduce_img" src="" alt="" style="width: 100%;margin-bottom:15px;" />
+                <p>In view of the ASEAN countries and the Guangxi autonomous region of the natural environment and the characteristics of economy and society, the WIAAT 200 carefully selected a new, practical science and technology achievements exhibition, involving health, agriculture, environmental protection, new materials, development and utilization of marine resources, a new generation of information technology, science and Technology Industrial Park and town construction in 7 areas exhibits more than 120 pieces, for Chinese and foreign guests and the people of Nanning show a multi field, high level, a new experience of "science and technology feast". </p>
+            </div>
+            <div class="col-xs-12 col-sm-12 placeholder" style="text-align: center">
+                <a class="btn btn-success" href="javascript:void(0);" onclick="hideCover()">To Visit</a>
+            </div>
+        </div>
+    </div>
+    <div id="cover_about" class="cover">
+        
+        <div class="container" style="margin-top: 10px;margin-bottom:50px;">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h3>Nanning HighLand Digital Technology,Inc.</h3>
+                </div>
+                <div class="col-xs-2">
+                    <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
+
+                </div>
+            </div>
+            <hr class="featurette-divider" style="margin-top: 5px; border-top: 1px solid #0ce3ac;" />
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff;text-indent:2em;">
                 
                     <p>
@@ -164,7 +197,11 @@
                     </p>
                 
             </div>
-
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 placeholder"></div>
+                <div class="col-xs-4 col-sm-4 placeholder" style="text-align:center;"><img id="hl_img" src="" alt="" style="width: 100%;max-width:150px;margin-top:15px;margin-bottom:15px;" /></div>
+                <div class="col-xs-4 col-sm-4 placeholder"></div>
+            </div>
         </div>
     </div>
     <div id="cover_hot" class="cover">
