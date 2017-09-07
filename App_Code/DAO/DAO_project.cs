@@ -165,28 +165,28 @@ namespace DAO
             return new SQL().Query("select * from obj_industry order by listorder asc ").Tables[0];
         }
 
-        public DataTable GetList(int pageNum, int pageSize, string name, string description, bool ishot, int company_id, int industry_id, string orderBy, out int count)
+        public DataTable GetList(int pageNum, int pageSize, string name, string name_en, bool ishot, int company_id, int industry_id, string orderBy, out int count)
         {
             StringBuilder sqlStr = new StringBuilder();//查询结果集
             StringBuilder sqlWhere = new StringBuilder();//查询条件
             StringBuilder sqlCount = new StringBuilder();//查询总数
             SqlParameter[] parameters ={
                 new SqlParameter("@name",SqlDbType.NVarChar),
-                new SqlParameter("@description",SqlDbType.NVarChar),
+                new SqlParameter("@name_en",SqlDbType.NVarChar),
                new SqlParameter("@ishot",SqlDbType.Bit),
                new SqlParameter("@company_id",SqlDbType.Int),
                new SqlParameter("@industry_id",SqlDbType.Int)
             };
             parameters[0].Value = "%" + name + "%";
-            parameters[1].Value = "%" + description + "%";
+            parameters[1].Value = "%" + name_en + "%";
             parameters[2].Value = ishot;
             parameters[3].Value = company_id;
             parameters[4].Value = industry_id;
             sqlCount.Append("select id from obj_project where 1=1 ");
             sqlStr.Append("select top " + pageSize + " * from obj_project where 1=1 ");//用于查询返回当前页数据
-            if (name != "" && description != "")
+            if (name != "" && name_en != "")
             {
-                sqlWhere.Append(" and (name like @name or description like @description )");
+                sqlWhere.Append(" and (name like @name or name_en like @name_en )");
             }
             else
             {
@@ -194,9 +194,9 @@ namespace DAO
                 {
                     sqlWhere.Append(" and name like @name ");
                 }
-                if (description != "")
+                if (name_en != "")
                 {
-                    sqlWhere.Append(" and description like @description ");
+                    sqlWhere.Append(" and name_en like @name_en ");
                 }
             }
             if (ishot)

@@ -29,6 +29,7 @@ public class ProjectHandler : IHttpHandler {
             string iv_id = context.Request["iv_id"];
             string name = context.Request["title"];
             string name_en = context.Request["title_en"];
+                string img_url = context.Request["img_url"];
             string description = context.Request["description"];
             bool ishot = false;
             string strishot = context.Request["ishot"];
@@ -38,11 +39,11 @@ public class ProjectHandler : IHttpHandler {
                 industry_id = int.Parse(context.Request["industry_id"]);
             if (id == 0)
             {//添加
-                result = new BLL.BLL_project().Add(name_en, name,  description,    iv_id,   ishot,   industry_id);
+                result = new BLL.BLL_project().Add(name_en, name,img_url,  description,    iv_id,   ishot,   industry_id);
             }
             else
             {//修改
-                result = new BLL.BLL_project().Update(id,  name_en, name,  description,  iv_id,   ishot,  industry_id);
+                result = new BLL.BLL_project().Update(id,  name_en, name,img_url,  description,  iv_id,   ishot,  industry_id);
             }
         }
         

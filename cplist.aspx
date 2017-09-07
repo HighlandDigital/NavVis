@@ -54,7 +54,7 @@
                             {
                                 text: "增加", iconCls: "icon-add", handler: function () {     //回调函数
                                     //添加热点信息
-                                    window.location = "cpdetail.aspx";
+                                    window.location = "cpdetail.aspx?code=HL5885031";
                                 }
                             },
                             {
@@ -112,7 +112,7 @@
                                         $.messager.alert('警告', '不支持批量修改', 'error');
                                     }
                                     else {                                       
-                                        window.location.href = "cpdetail.aspx?id=" + encodeURI(encodeURI(rows[0].id));
+                                        window.location.href = "cpdetail.aspx?code=HL5885031&id=" + encodeURI(encodeURI(rows[0].id));
                                        
 
                                     }

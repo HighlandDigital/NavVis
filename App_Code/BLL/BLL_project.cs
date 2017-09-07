@@ -48,6 +48,7 @@ namespace BLL
                     iv_id = dt.Rows[0]["iv_id"] != null ? dt.Rows[0]["iv_id"].ToString() : "",
                     title = dt.Rows[0]["name"] != null ? dt.Rows[0]["name"].ToString() : "",
                     title_en = dt.Rows[0]["name_en"] != null ? dt.Rows[0]["name_en"].ToString() : "",
+                    img_url = dt.Rows[0]["img_url"] != null ? dt.Rows[0]["img_url"].ToString() : "",
                     ishot = dt.Rows[0]["ishot"] != null ? dt.Rows[0]["ishot"].ToString() : "",
                     industry_id = dt.Rows[0]["industry_id"] != null ? dt.Rows[0]["industry_id"].ToString() : ""
                 };
@@ -65,10 +66,10 @@ namespace BLL
         
         }
 
-        public string Add(string name_en,string name, string description,   string iv_id,  bool ishot,  int industry_id)
+        public string Add(string name_en,string name,string img_url, string description,   string iv_id,  bool ishot,  int industry_id)
         {
 
-            string img_url="image/project/"+iv_id+"/title.jpg";
+            //string img_url="image/project/"+iv_id+"/title.jpg";
             string poi_id="0";
             int listorder=0;
             int hotorder=0;
@@ -99,9 +100,9 @@ namespace BLL
         }
 
 
-        public string Update(int id, string name_en,string name, string description, string iv_id,  bool ishot, int industry_id)
+        public string Update(int id, string name_en,string name,string img_url, string description, string iv_id,  bool ishot, int industry_id)
         {
-            string img_url = "image/project/" + iv_id + "/title.jpg";
+            //string img_url = "image/project/" + iv_id + "/title.jpg";
             string poi_id = "0";
             int listorder = 0;
             int hotorder = 0;

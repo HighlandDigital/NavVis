@@ -177,7 +177,7 @@
         </div>
     </div>
     <div id="cover_project" class="cover">
-        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+        <div class="container" style="margin-bottom: 50px; padding: 20px;">
                 <div class="row" style="padding-left: 20px; padding-right: 20px;">
                     <div class="input-group">
                         <input id="industry_id" type="text" style="display: none;" value="" />
@@ -197,7 +197,7 @@
     </div>
     
     <div id="cover_poi" class="cover" style="display: none;">
-        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+        <div class="container" style="margin-bottom: 50px; padding: 20px;">
                 <div class="row">
                     <div class="col-xs-10">
                         <h3 id="POI_title"></h3>
@@ -207,6 +207,7 @@
                         
                     </div>
                 </div>
+                <hr class="featurette-divider" style="margin-top:5px;"/>
                 <div id="POI_body" style="height: 100%;">
                 </div>
         </div>

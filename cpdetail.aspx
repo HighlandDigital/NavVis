@@ -34,18 +34,22 @@
     <div>
         <div style="display:none;"><input id="id" value="0" style="width: 300px;" type="text" /><input id="projectid" value="0" style="width: 300px;" type="text" /></div>
         <table border="0" style="width: 100%">
-
+            <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
+                <td style="width: 100px"></td>
+                <td><input id="btok" type="button" value="提交" onclick="sumitpoint()" /><input id="btok" type="button" value="返回" /onclick="reback()"></td>
+            </tr>
             <tr style="border-style: none none ridge none; border-bottom-width: 1px; border-bottom-color: #FF0000; text-align: left;"  >
                 <td class="auto-style1">热点类别</td>
                 <td class="auto-style2"><input id="industry_id" style="width:300px" class="easyui-combobox"  /></td>
             </tr>
             <tr style="border-style: none none ridge none; border-bottom-width: 1px; border-bottom-color: #FF0000; text-align: left;"  >
                 <td class="auto-style1">推荐</td>
-                <td class="auto-style2"><input id="ishot"  value="1"  type="checkbox" /></td>
+                <td class="auto-style2"><input id="ishot"  value="0"  type="checkbox" /></td>
             </tr>
             <tr style="border-style: none none ridge none; border-bottom-width: 1px; border-bottom-color: #FF0000; text-align: left;"  >
                 <td class="auto-style1">热点编号</td>
-                <td class="auto-style2"><input id="iv_id" value="0" style="width: 300px;" type="text" readonly="readonly"  /></td>
+                <td class="auto-style2"><input id="iv_id" value="0" style="width: 300px;" type="text" readonly="readonly"  /><a href="javascript:void(0);" onclick="resetGuid()">重置</a></td>
+               
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px">标题</td>
@@ -56,21 +60,17 @@
                 <td><input id="title_en" value="0" style="width: 300px;" type="text" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
-                <td style="width: 100px">图标</td>
-                <td><img id="title_img" /></td>
+                <td style="width: 100px">项目图标</td>
+                <td><input id="img_url" style="width: 300px;" type="text" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
-                <td style="width: 100px"></td>
+                <td style="width: 100px">点内图片</td>
                 <td><input id="title_img_url"  style="width: 300px;" type="text" /></td>
-            </tr>
-            <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;display:none"  >
-                <td style="width: 100px">热点图标</td>
-                <td><input id="iv_img_url"  style="width: 300px;" type="text" /></td>
             </tr>
 
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px">锁定</td>
-                <td><input id="locked" value="1"   type="checkbox" /></td>
+                <td><input id="locked" value="0"   type="checkbox" /></td>
             </tr>
             <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
                 <td style="width: 100px">中文资料</td>
@@ -88,10 +88,7 @@
                 <td style="width: 100px">英文html</td>
                 <td><script id="description_en_mod" type="text/plain" style="width:900px;height:300px;"></script></td>
             </tr>
-            <tr style="border-style: none none solid none; border-bottom-width: thin; border-bottom-color: #000000; text-align: left;"  >
-                <td style="width: 100px"></td>
-                <td><input id="btok" type="button" value="提交" onclick="sumitpoint()" /><input id="btok" type="button" value="返回" /onclick="reback()"></td>
-            </tr>
+            
         </table>       
 
        
@@ -165,7 +162,8 @@
                                 $("#projectid").val(datap.id);
                              //   $("#ishot").val(data.ishot);
                                 $('#industry_id').combobox('setValue', datap.industry_id);
-                                if (datap.ishot == true)
+                                $("#img_url").val(datap.img_url);
+                                if (datap.ishot == "True")
                                     $("#ishot").attr("checked", 'checked');
                             },
                             error: function (ex) {
@@ -179,9 +177,9 @@
                         $("#title").val(data.title);
                         $("#title_en").val(data.title_en);
                         $("#title_img_url").val(data.title_img_url);                      
-                        $("#title_img").attr("src", data.title_img_url);
+                        //$("#title_img").attr("src", data.title_img_url);
                         
-                        if (data.locked==true)
+                        if (data.locked=="True")
                             $("#locked").attr("checked", 'checked');
                         
                         $("#description").val(data.description);
@@ -216,6 +214,10 @@
             });
         }
 
+        function resetGuid() {
+            $("#iv_id").val(guid());
+        }
+
         function reback()
         {
             window.location.href = "cplist.aspx";
@@ -227,32 +229,31 @@
             var iv_id = $("#iv_id").val();
             var title = $("#title").val();
             var title_en = $("#title_en").val();
+            var img_url = $("#img_url").val();
             var title_img_url = $("#title_img_url").val();
-            var locked = $("#locked").val();
+            var locked = $("#locked").prop('checked') ? 1 : 0;
 
             var description = $("#description").val();
             var description_en = $("#description_en").val();
             var description_mod = UE.getEditor('description_mod').getContent();
             var description_en_mod = UE.getEditor('description_en_mod').getContent();
-            var iv_img_url = $("#iv_img_url").val();
-
-
+            
             $.post("Handler/PointHandler.ashx",
-            { "ac": "sumit", "id": id, "iv_id": iv_id, "title": title, "title_en": title_en, "title_img_url": title_img_url, "locked": locked, "description": description, "description_en": description_en, "description_mod": description_mod, "description_en_mod": description_en_mod ,"iv_img_url":iv_img_url},
+            { "ac": "sumit", "id": id, "iv_id": iv_id, "title": title, "title_en": title_en, "title_img_url": title_img_url, "locked": locked, "description": description, "description_en": description_en, "description_mod": description_mod, "description_en_mod": description_en_mod },
               function (data) {
                   //提示操作结果
-                 // alert(data.msg);
+                  // alert(data.msg);
+                  if (id == 0) resetGuid();
               },
               "json"
               );
 
             var projectid = $("#projectid").val();
-            var ishot = $("#ishot").val();
+            var ishot = $("#ishot").prop('checked') ? 1 : 0;
             var industry_id = $("#industry_id").combobox("getValue");
-          //  $("#industry_id").val();
-            alert(industry_id)
+          
             $.post("Handler/ProjectHandler.ashx",
-            { "ac": "sumit", "id": projectid, "iv_id": iv_id, "title": title, "title_en": title_en, "ishot": ishot, "industry_id": industry_id, "description": description },
+            { "ac": "sumit", "id": projectid, "iv_id": iv_id, "title": title, "title_en": title_en, "img_url": img_url, "ishot": ishot, "industry_id": industry_id, "description": description },
               function (data) {
                   //提示操作结果
                   alert(data.msg);

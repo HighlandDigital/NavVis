@@ -26,7 +26,7 @@ namespace BLL
         /// <summary>
         /// 热点html代码
         /// </summary>
-        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:95%;\" alt=\"$title$\"/> <div>$description$</div>";
+        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:100%;\" alt=\"$title$\"/> <div>$description$</div>";
 
 
 
@@ -140,7 +140,7 @@ namespace BLL
         /// <param name="description_en"></param>
         /// <param name="locked"></param>
         /// <returns></returns>
-        public string addPoint(string iv_id, string title, string title_en, string title_img_url, string description, string description_en, bool locked, string iv_img_url)
+        public string addPoint(string iv_id, string title, string title_en, string title_img_url, string description, string description_en, bool locked)
         {
 
             string description_mod = create(title, title_img_url, description);
@@ -180,7 +180,7 @@ namespace BLL
         /// <param name="description_en"></param>
         /// <param name="locked"></param>
         /// <returns></returns>
-        public string edit(int id, string iv_id, string title, string title_en, string title_img_url, string description, string description_mod, string description_en, string description_en_mod, bool locked, string iv_img_url)
+        public string edit(int id, string iv_id, string title, string title_en, string title_img_url, string description, string description_mod, string description_en, string description_en_mod, bool locked)
         {
           
 
