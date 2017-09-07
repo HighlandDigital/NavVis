@@ -163,7 +163,7 @@
                              //   $("#ishot").val(data.ishot);
                                 $('#industry_id').combobox('setValue', datap.industry_id);
                                 $("#img_url").val(datap.img_url);
-                                if (datap.ishot == true)
+                                if (datap.ishot == "True")
                                     $("#ishot").attr("checked", 'checked');
                             },
                             error: function (ex) {
@@ -179,7 +179,7 @@
                         $("#title_img_url").val(data.title_img_url);                      
                         //$("#title_img").attr("src", data.title_img_url);
                         
-                        if (data.locked==true)
+                        if (data.locked=="True")
                             $("#locked").attr("checked", 'checked');
                         
                         $("#description").val(data.description);
@@ -231,7 +231,7 @@
             var title_en = $("#title_en").val();
             var img_url = $("#img_url").val();
             var title_img_url = $("#title_img_url").val();
-            var locked = $("#locked").val();
+            var locked = $("#locked").prop('checked') ? 1 : 0;
 
             var description = $("#description").val();
             var description_en = $("#description_en").val();
@@ -249,7 +249,7 @@
               );
 
             var projectid = $("#projectid").val();
-            var ishot = $("#ishot").val();
+            var ishot = $("#ishot").prop('checked') ? 1 : 0;
             var industry_id = $("#industry_id").combobox("getValue");
           
             $.post("Handler/ProjectHandler.ashx",
