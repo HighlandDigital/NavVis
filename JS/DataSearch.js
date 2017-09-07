@@ -55,7 +55,7 @@ function searchProjectHot() {
         url: "../handler/searchHandler.ashx",
         data: {
             method: "searchProjectHot",
-            pagesize: "10",
+            pagesize: "20",
             lang: language
         },
         success: function (data) {
@@ -70,7 +70,7 @@ function searchProjectHot() {
                         "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                        "<img style=\"width:100%;\" src=\""  + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
+                        "<img style=\"width:100%;\" src=\"" + data[i].img_url + "\" class=\"img-responsive\" alt=\"\" onerror=\"this.src='" + loadIndustryImg(data[i].industry_id) + "'\"/>" +
                         "</div>" +
                         "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
                         "</div></a></div>";
@@ -90,7 +90,7 @@ function searchProject() {
         url: "../handler/searchHandler.ashx",
         data: {
             method: "searchProject",
-            pagesize: "10",
+            pagesize: "30",
             industry_id: $("#industry_id").val(),
             param: $("#input_param").val(),
             lang: language
@@ -107,7 +107,7 @@ function searchProject() {
                         "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
-                        "<img style=\"width:100%;\" src=\""  + data[i].img_url + "\" class=\"img-responsive\" alt=\"" + data[i].poi + "\" onerror=\"this.src='../image/default/project_default.jpg'\"/>" +
+                        "<img style=\"width:100%;\" src=\"" + data[i].img_url + "\" class=\"img-responsive\" alt=\"\" onerror=\"this.src='" + loadIndustryImg(data[i].industry_id) + "'\"/>" +
                         "</div>" +
                         "<div class=\"panel-footer\" style=\"text-align:center;\">" + title + "</div>" +
                         "</div></a></div>";
@@ -127,7 +127,7 @@ function searchIndustry() {
         url: "../handler/searchHandler.ashx",
         data: {
             method: "searchIndustry",
-            pagesize: "10",
+            pagesize: "20",
             lang: language
         },
         success: function (data) {
@@ -225,4 +225,29 @@ function loadjs(path){
     script.src = path;
     script.type = 'text/javascript';
     head.appendChild(script);
+}
+
+var industryArray = [];
+function loadIndustryArray() {
+    $.ajax({
+        type: "post",
+        url: '../Handler/PointHandler.ashx?ac=industry',
+        cache: false,
+        async: false,
+        dataType: 'json',
+        success: function (json) {
+            industryArray = json;
+        },
+        error: function () {
+
+        }
+
+    });
+}
+
+function loadIndustryImg(id) {
+    for (var i = 0; i < industryArray.length; i++) {
+        if (id == industryArray[i].id) return industryArray[i].img_url;
+    }
+    return "../image/default/industry_default.jpg";
 }

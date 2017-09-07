@@ -26,7 +26,7 @@ namespace BLL
         /// <summary>
         /// 热点html代码
         /// </summary>
-        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:100%;margin-bottom:5px;\" alt=\"$title$\"/> <div>$description$</div>";
+        private string htmlcodemodel = "<img src=\"$title_img_url$\" style=\"width:100%;margin-bottom:15px;\" alt=\"\"/> <div style=\"text-indent:2em;\">$description$</div>";
 
 
 
@@ -278,7 +278,7 @@ namespace BLL
             string strjson = "";
             strjson = htmlcodemodel;
           //  strjson=getDataFromFile("");
-            strjson = strjson.Replace("$title$",title);
+            //strjson = strjson.Replace("$title$",title);
             strjson = strjson.Replace("$title_img_url$", title_img_url);
             strjson = strjson.Replace("$description$", description);
             return strjson;

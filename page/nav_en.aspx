@@ -45,6 +45,7 @@
                     indoorviewer.addEventListener("poiSelected", function (data) { clickEventListener(data); });
                     indoorviewer.setLanguage("en");
                     loadcss("../style/theme/bootstrap.min.darkly.css");
+                    loadIndustryArray();
                 }
             });
 
