@@ -95,7 +95,7 @@
                     WXoptions: {
                         evenType: 'click',
                         isTitleVisibility: true,
-                        title: '',
+                        title: ' ',
                         isTipVisibility: true,
                         tip: 'Share with my friend on Wechat',
                         qrcodeW: 180,
@@ -284,6 +284,23 @@
                         <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>
 
                     </div>
+                </div>
+                <div class="panel-footer"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="cover-qrcode" class="cover">
+        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+            <div class="panel panel-default" style="width: 100%; height: 100%;">
+                <div class="panel-heading">
+                    Share
+                    <a class="pull-right tooltip-viewport-bottom" style="margin: 2px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+                </div>
+                <div class="panel-body" id="div-qrcode" >
+                    
                 </div>
                 <div class="panel-footer"></div>
 
