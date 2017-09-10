@@ -20,7 +20,7 @@
     <script type="text/javascript" src="../JS/iShare.js"></script>
     <script src="qrcode.min.js"></script>
     
-    <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script>
+    <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script> 
     
     <script type="text/javascript">
         var language = "CH";
