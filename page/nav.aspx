@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" type="text/css" href="../style/css/nav.css" />
 
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../JS/DataSearch.js"></script>
@@ -88,7 +89,7 @@
 
             xshare = (new iShare({
                 container: '.iShare', config: {
-                    title: '分享212',
+                    title: '分享',
                     description: '',
                     url: window.location.href,
                     //isAbroad: false, //国内分享
@@ -263,6 +264,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="iShare ">
+                        <!--
                         <a href="#" class="iShare_qzone"><i class="iconfont qzone">&#xe610;</i></a>
                         <a href="#" class="iShare_tencent"><i class="iconfont tencent" style="vertical-align: -2px;">&#xe608;</i></a>
 
@@ -280,8 +282,25 @@
                         <a href="#" class="iShare_pinterest"><i class="iconfont pinterest" style="vertical-align: 0px;">&#xe60c;</i></a>
                         <a href="#" class="iShare_wechat"><i class="iconfont wechat" style="vertical-align: -2px;">&#xe613;</i></a>
                         <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>
-
+                        -->
                     </div>
+                </div>
+                <div class="panel-footer"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="cover-qrcode" class="cover">
+        <div class="container" style="margin-bottom: 10px; padding: 20px;">
+            <div class="panel panel-default" style="width: 100%; height: 100%;">
+                <div class="panel-heading">
+                    分享
+                    <a class="pull-right tooltip-viewport-bottom" style="margin: 2px;" href="javascript:void(0);" onclick="hideCover()"><span class="fa fa-remove"></span></a>
+                </div>
+                <div class="panel-body" id="div-qrcode" >
+                    
                 </div>
                 <div class="panel-footer"></div>
 

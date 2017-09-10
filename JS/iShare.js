@@ -533,27 +533,29 @@
                     _downFlag = '';
                     _upFlag = 'display:none;';
                     this.upDownFlag = 'down';
-                    _radius = 'border-bottom-left-radius: 0;';
+                    _radius = 'border-bottom-left-radius: 5px;';
                 } else {
                     _downFlag = 'display:none;';
                     _upFlag = '';
                     this.upDownFlag = 'up';
-                    _radius = 'border-top-left-radius: 0;';
+                    _radius = 'border-top-left-radius: 5px;';
                 }
 
-                var _containerHTML = '<div style="text-align: center;background-color: ' + _bgcolor + ';box-shadow: 1px 1px 4px #888888;padding: 8px 8px 4px;border-radius: 4px;' + _radius + '">',
+                var _containerHTML = '<div style="text-align: center;background-color: ' + _bgcolor + ';box-shadow: 1px 1px 4px #888888;padding: 8px 8px 4px;border-radius: 5px;' + _radius + '">',
 		 					_titleHTML = this.isTitleVisibility ? '<p class="tt" style="line-height: 30px;margin:0; text-shadow: 1px 1px rgba(0,0,0,0.1);font-weight: 700;margin-bottom: 4px;' + _titleStyle + '">' + this.title + '</p>' : '',
                 // _imgHTML = '<img  style="font-size: 12px;line-height: 20px; -webkit-user-select: none;box-shadow: 1px 1px 2px rgba(0,0,0,0.4); ' + _imgStyle + '" src="' + this.URL + '">',
-		 					_imgHTML = '<div class="qrcode" style="width:' + this.settings.qrcodeW + 'px; height:' + this.settings.qrcodeH + 'px; overflow:hidden;"></div>',
+		 					_imgHTML = '<div class="qrcode" style="width:' + this.settings.qrcodeW + 'px; height:' + this.settings.qrcodeH + 'px; overflow:hidden;clear:both;margin:auto;"></div>',
 		 					_tipHTML = this.isTipVisibility ? '<p style="font-size: 12px;line-height: 20px; margin: 4px auto;width: 120px;' + _tipStyle + '">' + this.tip + '</p>' : '',
 		 					_upArrowHTML = '<div style="' + _upFlag + 'position: relative;height: 0;width: 0;border-style: solid;border-width: 12px;border-color: transparent;border-bottom-color: ' + _bgcolor + ';border-top: none;"></div>',
 		 					_downArrowHTML = '</div><div style="' + _downFlag + 'position: relative;height: 0;width: 0;border-style: solid;border-width: 12px;border-color: transparent;border-top-color: ' + _bgcolor + ';border-bottom: none;"></div>';
                 // 拼接WXHTML
-                var WXSTR = _upArrowHTML + _containerHTML + _titleHTML + _imgHTML + _tipHTML + _downArrowHTML;
+                //var WXSTR = _upArrowHTML + _containerHTML + _titleHTML + _imgHTML + _tipHTML + _downArrowHTML;
+                var WXSTR =  _containerHTML + _titleHTML + _imgHTML + _tipHTML + _downArrowHTML;
 
                 this.wxbox.innerHTML = WXSTR;
-                this.wxbox.style.cssText = 'position:absolute; left: -99999px;';
-                document.body.appendChild(this.wxbox);
+                //this.wxbox.style.cssText = 'position:absolute; left: -99999px;';
+                //document.body.appendChild(this.wxbox);
+                $("#div-qrcode").append(this.wxbox);
             },
             setLocation: function (flag) {
                 // 渲染后再调整位置
@@ -563,7 +565,8 @@
 		 					_eH = this.element.offsetHeight,
 		 					_eTop = Util.getElementTop(this.element),
 		 					_eLeft = Util.getElementLeft(this.element),
-		 					_boxStyle = 'position:absolute; color: #000;z-index: 99999;';
+		 					//_boxStyle = 'position:absolute; color: #000;z-index: 99999;';
+                            _boxStyle = ' color: #000;z-index: 99999;';
 
                 _boxStyle = _boxStyle + 'left: ' + (_eW / 2 - 12 + _eLeft) + 'px;';
                 if (this.upDownFlag === 'down') {
@@ -618,6 +621,9 @@
                 }
             },
             show: function () {
+                $("#cover_share").hide();
+                $("#cover-qrcode").show();
+                
                 this.status = true;
                 this.wxbox.style.display = 'block';
                 this.visibility = true;
@@ -653,7 +659,7 @@
             host: location.origin || '',
             description: Util.getmeta('description'),
             image: Util.getimg(),
-            sites: ['iShare_weibo', 'iShare_qq', 'iShare_wechat', 'iShare_tencent', 'iShare_douban', 'iShare_qzone', 'iShare_renren', 'iShare_youdaonote', 'iShare_facebook', 'iShare_linkedin', 'iShare_twitter', 'iShare_googleplus', 'iShare_tumblr', 'iShare_pinterest'],
+            sites: ['iShare_wechat', 'iShare_weibo', 'iShare_qq', 'iShare_tencent', 'iShare_douban', 'iShare_qzone', 'iShare_renren', 'iShare_youdaonote', 'iShare_facebook', 'iShare_linkedin', 'iShare_twitter', 'iShare_googleplus', 'iShare_tumblr', 'iShare_pinterest'],
             initialized: true,
             isTitle: true,
             isAbroad: false,
