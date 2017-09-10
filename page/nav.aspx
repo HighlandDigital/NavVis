@@ -7,19 +7,20 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>第14届中国—东盟博览会虚拟导览</title>
+    <title>东盟博览会全科盟虚拟展馆</title>
     <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="../style/css/ishare.css" />
 
     <link rel="stylesheet" type="text/css" href="../style/css/nav.css" />
 
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../JS/DataSearch.js"></script>
     <script type="text/javascript" src="../JS/iShare.js"></script>
     <script src="qrcode.min.js"></script>
-
+    
+    <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script>
+    
     <script type="text/javascript">
         var language = "CH";
         var xshare;
@@ -128,7 +129,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">全科盟展区</a>
+                <a class="navbar-brand" href="#">D1厅全科盟展区</a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverProj(0)"><span class="fa fa-search"></span></a>
                 <a class="navbar-brand" href="javascript:void(0);" onclick="showCoverShare()"><span class="glyphicon glyphicon-share"></span></a>
             </div>
