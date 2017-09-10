@@ -168,15 +168,39 @@ function searchPointByIVID(id) {
             if (!data || data.length == 0) return;
             var d = data[0];
             if (language == "CH") {
-                $("#POI_title").html(d.title);
-                $("#POI_body").html(d.description_mod);
+                var title = d.title;
+                var content = d.description_mod;
+                if (title == null || title == undefined) title = "";
+                if (content == null || content == undefined) content = "非常抱歉，我们没有找到相关内容，请稍后再回来";
+                $("#POI_title").html(title);
+                $("#POI_body").html(content);
             }
             else if (language == "EN") {
-                $("#POI_title").html(d.title_en);
-                $("#POI_body").html(d.description_en_mod);
+                var title = d.title_en;
+                var content = d.description_en_mod;
+                if (title == null || title == undefined) title = "";
+                if (content == null || content == undefined) content = "Ops,we found no content here,come back later,please.";
+                $("#POI_title").html(title);
+                $("#POI_body").html(content);
             }
             
             showCoverPOI();
+        },
+        dataType: "json"
+    });
+}
+
+function log(id, iv_id) {
+    $.ajax({
+        type: 'POST',
+        url: "../handler/VisitHandler.ashx",
+        data: {
+            m: "add",
+            poi:id,
+            ivid: iv_id
+        },
+        success: function (data) {
+            
         },
         dataType: "json"
     });

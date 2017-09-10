@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" type="text/css" href="../style/css/nav.css" />
     
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    
     <script src="../JS/jquery-3.2.1.min.js"></script>
     <script src="../JS/DataSearch.js"></script>
     <script type="text/javascript" src="../JS/iShare.js"></script>
@@ -56,7 +58,7 @@
         function clickEventListener(data) {
             if (!data.id) return;
             searchPointByIVID(data.customData);
-
+            log(data.id, data.customData);
         }
 
         function hideCover() {
@@ -265,7 +267,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="iShare ">
-                        <a href="#" class="iShare_qzone"><i class="iconfont qzone">&#xe610;</i></a>
+                        <%--<a href="#" class="iShare_qzone"><i class="iconfont qzone">&#xe610;</i></a>
                         <a href="#" class="iShare_tencent"><i class="iconfont tencent" style="vertical-align: -2px;">&#xe608;</i></a>
 
 
@@ -281,7 +283,7 @@
                         <a href="#" class="iShare_linkedin"><i class="iconfont linkedin" style="vertical-align: 2px;">&#xe607;</i></a>
                         <a href="#" class="iShare_pinterest"><i class="iconfont pinterest" style="vertical-align: 0px;">&#xe60c;</i></a>
                         <a href="#" class="iShare_wechat"><i class="iconfont wechat" style="vertical-align: -2px;">&#xe613;</i></a>
-                        <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>
+                        <a href="#" class="iShare_tumblr"><i class="iconfont tumblr" style="vertical-align: 2px;">&#xe600;</i></a>--%>
 
                     </div>
                 </div>

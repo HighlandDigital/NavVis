@@ -59,7 +59,7 @@
         function clickEventListener(data) {
             if (!data.id) return;
             searchPointByIVID(data.customData);
-
+            log(data.id, data.customData);
         }
 
         function hideCover() {
