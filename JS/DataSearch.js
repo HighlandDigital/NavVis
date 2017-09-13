@@ -67,7 +67,7 @@ function searchProjectHot() {
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
                     var content = "<div class=\"col-xs-12 col-sm-12 col-lg-12 placeholder\" style=\"margin-top: 10px;\">" +
-                        "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
+                        "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "','" + data[i].iv_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
                         "<img style=\"width:100%;\" src=\"" + data[i].img_url + "\" class=\"img-responsive\" alt=\"\" onerror=\"this.src='" + loadIndustryImg(data[i].industry_id) + "'\"/>" +
@@ -104,7 +104,7 @@ function searchProject() {
                     if (language == "CH") title = data[i].name;
                     else if (language == "EN") title = data[i].name_en;
                     var content = "<div class=\"col-xs-12 col-sm-12 col-lg-12 placeholder\">" +
-                        "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "')\">" +
+                        "<a href=\"javascript:void(0);\" onclick=\"moveToPoint('" + data[i].poi_id + "','" + data[i].iv_id + "')\">" +
                         "<div class=\"panel panel-default\">" +
                         "<div class=\"panel-body\" style=\"padding:0px;\">" +
                         "<img style=\"width:100%;\" src=\"" + data[i].img_url + "\" class=\"img-responsive\" alt=\"\" onerror=\"this.src='" + loadIndustryImg(data[i].industry_id) + "'\"/>" +
@@ -207,7 +207,8 @@ function log(id, iv_id) {
 }
 
 function getParameterString(url, name) {
-    if (url.indexOf("?") != -1) {
+    var ur = url;
+    if (ur.indexOf("?") != -1) {
         var str = url.substr(url.indexOf("?") + 1);
         var paraArray = str.split("&");
         for (var i = 0; i < paraArray.length; i++) {
@@ -274,4 +275,24 @@ function loadIndustryImg(id) {
         if (id == industryArray[i].id) return industryArray[i].img_url;
     }
     return "../image/default/industry_default.jpg";
+}
+
+
+function moveToPoint(poi_id, iv_id) {
+    if (poi_id == null || poi_id == undefined || poi_id==0) searchPointByIVID(iv_id)
+    else if (poi_id > 0) IV.moveToPOIID(poi_id);
+}
+function loadPoint(poi_id) {
+    IV.moveToPOIID(poi_id);
+    $(".cover").hide();
+}
+
+function loadpoicloud() {
+    window.location = "nav.aspx#/?&pc=true";
+    window.location.reload();
+}
+
+function nopoicloud() {
+    window.location = "nav.aspx#/?&pc=false";
+    window.location.reload();
 }

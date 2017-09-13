@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>东盟博览会全科盟虚拟展馆</title>
+    <title>中国-东盟博览会网上虚拟展馆</title>
     <link rel="stylesheet" type="text/css" href="../style/fonts/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="../style/css/ishare.css" />
 
@@ -20,7 +20,7 @@
     <script type="text/javascript" src="../JS/iShare.js"></script>
     <script src="qrcode.min.js"></script>
     
-    <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script> 
+    <script src="http://nstlab.cn:14610/iv.caexpo/IndoorViewerAPI.js"></script> 
     
     <script type="text/javascript">
         var language = "CH";
@@ -29,7 +29,7 @@
         IV.loaded(function () {
             // Replace the base URL with the address of your IndoorViewer instance, and remember to get the API from the same instance
             var indoorviewer = new IndoorViewer({
-                base_url: '//nstlab.cn:14610/iv.example',
+                base_url: '//nstlab.cn:14610/iv.caexpo',
                 'menu.datasets.visible': false,
                 'menu.poi.visible': false,
                 'menu.pointcloud.visible': false,
@@ -73,14 +73,6 @@
 
         }
 
-        function moveToPoint(poi_id) {
-            IV.moveToPOIID(poi_id);
-        }
-        function loadPoint(poi_id) {
-            IV.moveToPOIID(poi_id);
-            $(".cover").hide();
-        }
-
         //--------------//
         function showCoverShare() {
             $('body').css("overflow", "hidden")
@@ -114,6 +106,7 @@
         function toEn() {
             window.location = "nav_en.aspx";
         }
+
     </script>
 
 
@@ -141,6 +134,8 @@
                     <li><a href="javascript:void(0);" onclick="showCoverHot()">明星展台</a></li>
                     <li><a href="javascript:void(0);" onclick="showCoverSort()">参展行业</a></li>
                     <li><a href="javascript:void(0);" onclick="showCoverAbout()">关于我们</a></li>
+                    <li><a href="javascript:void(0);" onclick="loadpoicloud()">展示点云</a></li>
+                    <li><a href="javascript:void(0);" onclick="nopoicloud()">关闭点云</a></li>
                     <li><a href="javascript:void(0);" onclick="toEn()">English</a></li>
 
                 </ul>
@@ -158,7 +153,7 @@
         <div class="container" style="margin-top: 10px; margin-bottom: 70px;">
             <div class="row">
                 <div class="col-xs-10">
-                    <h3>全科盟：中国科技，引领广西，走进东盟</h3>
+                    <h4>全科盟：中国科技，引领广西，走进东盟</h4>
                 </div>
                 <div class="col-xs-2">
                     <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
@@ -167,10 +162,8 @@
             </div>
             <hr class="featurette-divider" style="margin-top: 5px; border-top: 1px solid #0ce3ac;" />
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff; text-indent: 2em;">
-                <p>为进一步推进国内科研院所优秀科技成果在广西落地并引领促进广西产业升级转型，推进科技成果在东盟国家的转移转化并促进东盟国家的创新发展，切实服务于我国的“一路一带”战略。全域科研院所科技成果转化联盟（简称“全科盟”）、广西科学院、广西自治区科协，整合了国内科学院最新的适合广西和东盟国家的成果，以“全国科学院科技成果联展”的形式参展本届东博会先进技术展。</p>
-                <p>在中国-东盟技术转移中心的支持和指导下，全科盟充分调动各成员和合作单位参展的积极性，组织了中国科学院、中国农业科学院、各省市自治区科学院的63家科研院所和企业参展，确保了本次联展的技术来源和技术水准。广西科学院与广西自治区科学技术协会充分发挥属地优势，不仅推出了的多项极具地域特色的科技成果，而且精心筹划全方位保障了本次联展的成功举行。</p>
-                <img id="introduce_img" src="" alt="" style="width: 100%;margin-bottom:15px;" />
-                <p>针对东盟国家和广西自治区的自然环境和经济社会特点，全科盟精心挑选了200项创新型、实用型的科技成果参展，涉及大健康、农业、生态环保、新材料、海洋资源开发利用、新一代信息技术、产业园区与科技小镇建设7个领域，展品120余件，为中外来宾和南宁市民展现一场多领域、高水平、全新感受的“科技盛宴”。</p>
+                <p>在中国-东盟技术转移中心的支持和指导下，全国科研院所科技成果转化联盟（简称“全科盟”）、广西科学院、广西自治区科协，整合了国内科学院最新的适合广西和东盟国家的成果，精心挑选了200项创新型、实用型的科技成果参展。内容涉及大健康、农业、生态环保、新材料、海洋资源开发利用、新一代信息技术、产业园区与科技小镇建设7个领域，展品120余件，以“全国科学院科技成果联展”的形式参加本届中国-东盟博览会先进技术展，并首次以最新全球领先的室内定位导航技术同步上线三维实景虚拟导览系统。欢迎您前来会展中心D1展厅，欢迎您进入中国-东盟博览会首个网上虚拟展馆!</p>
+                
             </div>
             <div class="col-xs-12 col-sm-12 placeholder" style="text-align: center">
                 <a class="btn btn-success" href="javascript:void(0);" onclick="hideCover()">进入展会</a>
@@ -182,7 +175,7 @@
         <div class="container" style="margin-top: 10px;margin-bottom:50px;">
             <div class="row">
                 <div class="col-xs-10">
-                    <h3>南宁海蓝数据有限公司</h3>
+                    <h4>南宁海蓝数据有限公司</h4>
                 </div>
                 <div class="col-xs-2">
                     <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>

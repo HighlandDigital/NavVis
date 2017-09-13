@@ -20,7 +20,7 @@
     <script type="text/javascript" src="../JS/iShare.js"></script>
     <script src="qrcode.min.js"></script>
 
-    <script src="http://nstlab.cn:14610/iv.example/IndoorViewerAPI.js"></script>
+    <script src="http://nstlab.cn:14610/iv.caexpo/IndoorViewerAPI.js"></script>
     
     <script type="text/javascript">
         var language = "EN";
@@ -29,7 +29,7 @@
         IV.loaded(function () {
             // Replace the base URL with the address of your IndoorViewer instance, and remember to get the API from the same instance
             var indoorviewer = new IndoorViewer({
-                base_url: '//nstlab.cn:14610/iv.example',
+                base_url: '//nstlab.cn:14610/iv.caexpo',
                 'menu.datasets.visible': false,
                 'menu.poi.visible': false,
                 'menu.pointcloud.visible': false,
@@ -70,14 +70,6 @@
 
             }, 100);
 
-        }
-
-        function moveToPoint(poi_id) {
-            IV.moveToPOIID(poi_id);
-        }
-        function loadPoint(poi_id) {
-            IV.moveToPOIID(poi_id);
-            $(".cover").hide();
         }
 
         //--------------//
@@ -157,7 +149,7 @@
         <div class="container" style="margin-top: 10px; margin-bottom: 70px;">
             <div class="row">
                 <div class="col-xs-10">
-                    <h3>The WIAAT</h3>
+                    <h4>The WIAAT</h4>
                 </div>
                 <div class="col-xs-2">
                     <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
@@ -166,11 +158,8 @@
             </div>
             <hr class="featurette-divider" style="margin-top: 5px; border-top: 1px solid #0ce3ac;" />
             <div class="col-xs-12 col-sm-12 placeholder" style="color: #ffffff; text-indent: 2em;">
-                <p>In order to further promote the domestic scientific research institutes of outstanding scientific and technological achievements in Guangxi landing and lead Guangxi to promote industrial upgrading, promote scientific and technological achievements to promote the innovation and development of ASEAN countries in the transformation of the ASEAN countries, and in the service of our country B&R strategy. The transformation of scientific and technological achievements of World Institutions Allance for Achievements Transformation (referred to as "WIAAT"), the Guangxi Academy of Sciences, Guangxi Autonomous Region Association for science and technology, the integration of the Academy of the new Guangxi and the ASEAN countries to the results, the National Academy of science and Technology Achievements Exhibition "in the form of the Expo exhibition of advanced technology. </p>
-                <p>In the Chinese ASEAN Center for technology transfer under the guidance and support, the WIAAT fully mobilize the enthusiasm of the members and the cooperative units participating, 63 Research Institute organized China Academy of Sciences, Chinese Academy of Agricultural Sciences, Academy of Sciences of the provinces and autonomous regions and enterprises, to ensure that the source of technology of this exhibition and technical standards. Guangxi Academy of Sciences and the Guangxi autonomous region science and Technology Association and give full play to local advantages, not only launched a number of geographical characteristics of the scientific and technological achievements, and careful planning to protect the full range of this exhibition was held successfully.</p>
-                <img id="introduce_img" src="" alt="" style="width: 100%;margin-bottom:15px;" />
-                <p>In view of the ASEAN countries and the Guangxi autonomous region of the natural environment and the characteristics of economy and society, the WIAAT 200 carefully selected a new, practical science and technology achievements exhibition, involving health, agriculture, environmental protection, new materials, development and utilization of marine resources, a new generation of information technology, science and Technology Industrial Park and town construction in 7 areas exhibits more than 120 pieces, for Chinese and foreign guests and the people of Nanning show a multi field, high level, a new experience of "science and technology feast". </p>
-            </div>
+                <p>In order to further promote the domestic scientific research institutes of outstanding scientific and technological achievements in Guangxi landing, the transformation of scientific and technological achievements of World Institutions Allance for Achievements Transformation (referred to as "WIAAT"), the Guangxi Academy of Sciences, Guangxi Autonomous Region Association for science and technology, the integration of the Academy of the new Guangxi and the ASEAN countries to the results, the National Academy of science and Technology Achievements Exhibition "in the form of the Expo exhibition of advanced technology. </p>
+                </div>
             <div class="col-xs-12 col-sm-12 placeholder" style="text-align: center">
                 <a class="btn btn-success" href="javascript:void(0);" onclick="hideCover()">To Visit</a>
             </div>
@@ -181,7 +170,7 @@
         <div class="container" style="margin-top: 10px;margin-bottom:50px;">
             <div class="row">
                 <div class="col-xs-10">
-                    <h3>Nanning HighLand Digital Technology,Inc.</h3>
+                    <h4>Nanning HighLand Digital Technology,Inc.</h4>
                 </div>
                 <div class="col-xs-2">
                     <a class="pull-right" href="javascript:void(0);" style="margin: 10px;" onclick="hideCover()"><span class="fa fa-remove" style="font-size: 40px;"></span></a>
